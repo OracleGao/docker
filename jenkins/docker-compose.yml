@@ -8,7 +8,9 @@ services:
     ports:
       - "16923:8080"
       - "50001:50000"
-    volumes:    
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ${JENKINS_DEPLOY_HOME}/jenkins:/root
       - ${JENKINS_DEPLOY_HOME}/log.properties:/var/jenkins_home/log.properties
       - /var/run/docker.sock:/var/run/docker.sock
