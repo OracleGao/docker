@@ -20,8 +20,8 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime:ro
      - /etc/timezone:/etc/timezone:ro
-     - ~/wordpress/web:/var/www/html    
-#     - ~/wordpress/php/php.ini:/usr/local/etc/php/php.ini
+     - ${WORDPRESS_DEPLOY_HOME}/web:/var/www/html    
+#     - ${WORDPRESS_DEPLOY_HOME}/php/php.ini:/usr/local/etc/php/php.ini
     logging:
        options:
          max-size: 1g
@@ -39,7 +39,7 @@ services:
     volumes:
      - /etc/localtime:/etc/localtime:ro
      - /etc/timezone:/etc/timezone:ro
-     - ~/wordpress/db:/var/lib/mysql
+     - ${WORDPRESS_DEPLOY_HOME}/db:/var/lib/mysql
     logging:
        options:
          max-size: 1g
