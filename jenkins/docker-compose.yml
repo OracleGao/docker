@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  jenkins2:
+    user: root
+    restart: always
+    image: jenkinsci/jenkins:2.23
+    ports:
+      - "16923:8080"
+      - "50001:50000"
+    volumes:    
+      - ${JENKINS_DEPLOY_HOME}/jenkins:/root
+      - ${JENKINS_DEPLOY_HOME}/log.properties:/var/jenkins_home/log.properties
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
+      - /usr/local/lib/python2.7:/usr/local/lib/python2.7
+      - ~/.docker:/root/.docker
+      - /usr/lib/x86_64-linux-gnu/libapparmor.so.1:/usr/lib/x86_64-linux-gnu/libapparmor.so.1
+      - /lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0
+      - /lib/x86_64-linux-gnu/libcgmanager.so.0:/lib/x86_64-linux-gnu/libcgmanager.so.0
+      - /lib/x86_64-linux-gnu/libnih.so.1:/lib/x86_64-linux-gnu/libnih.so.1
+      - /lib/x86_64-linux-gnu/libgcrypt.so.11:/lib/x86_64-linux-gnu/libgcrypt.so.11
+      - /lib/x86_64-linux-gnu/libnih-dbus.so.1:/lib/x86_64-linux-gnu/libnih-dbus.so.1
+    environment:
+      JAVA_OPTS: "-Djava.util.logging.config.file=/var/jenkins_home/log.properties"
+      JENKINS_HOME: "/root"
+    logging:
+      options:
+        max-size: 1g

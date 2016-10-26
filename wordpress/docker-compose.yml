@@ -1,0 +1,45 @@
+#docker 1.10.1
+#docker-compose: 1.6.2
+
+version: '2'
+
+services:
+  wordpress:
+    restart: always
+    image: wordpress:4.5.2
+    links:
+      - db:mysql
+    ports:
+      - 8888:80
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: passw0rd
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: WP_
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - ~/wordpress/web:/var/www/html    
+#     - ~/wordpress/php/php.ini:/usr/local/etc/php/php.ini
+    logging:
+       options:
+         max-size: 1g
+
+  db:
+    restart: always
+    image: mysql:5.7.12
+    ports:
+      - 3306:3306 
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: passw0rd
+      MYSQL_ROOT_PASSWORD: passw0rd
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - ~/wordpress/db:/var/lib/mysql
+    logging:
+       options:
+         max-size: 1g
