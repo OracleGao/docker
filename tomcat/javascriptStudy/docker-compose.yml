@@ -1,0 +1,18 @@
+#docker 1.10.1
+#docker-compose: 1.6.2
+
+version: '2'
+
+services:
+  js-study:
+    restart: always
+    image: tomcat:8.5.6
+    ports:
+      - 38080:8080
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - ${JAVASCRIPT_STUDY_HOME}:/usr/local/tomcat/webapps
+    logging:
+       options:
+         max-size: 1g
