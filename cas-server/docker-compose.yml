@@ -1,0 +1,22 @@
+#docker 1.10.1
+#docker-compose: 1.6.2
+
+version: '2'
+
+services:
+  cas-server:
+    restart: always
+    image: cas:5.0.0
+    ports:
+      - 8443:8443
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+    environment:
+      cas.server.name: https://10.1.10.20:8443
+      cas.server.prefix: https://10.1.10.20:8443/cas
+      cas.adminPagesSecurity.ip: 10.1.50.54
+    logging:
+       options:
+         max-size: 1g
+

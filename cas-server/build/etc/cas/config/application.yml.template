@@ -1,0 +1,16 @@
+info:
+  description: CAS Configuration
+
+server:
+  port: 8443
+  session:
+    cookie:
+      http-only: true
+  ssl:
+    enabled: true
+    key-store: /etc/cas/thekeystore
+    key-store-password: changeit
+    key-password: changeit
+
+#generate key command: 
+#  keytool -genkeypair -alias cas -keysize 2048 -keypass changeit -keyalg RSA -keystore thekeystore -storepass changeit
