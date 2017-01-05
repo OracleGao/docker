@@ -1,0 +1,10 @@
+{
+    "admin": {
+        "firstName":["Json1"],
+        "lastName":["One"]
+    },
+    "root": {
+        "firstName":["Json2"],
+        "eduPersonAffiliation":["employee", "student"]
+    }
+}

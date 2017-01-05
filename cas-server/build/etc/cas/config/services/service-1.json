@@ -1,8 +1,0 @@
-{
-  "@class" : "org.apereo.cas.services.RegexRegisteredService",
-  "serviceId" : "^(https|http)://.*",
-  "name" : "service",
-  "id" : 1,
-  "evaluationOrder" : 0
-  "logoutType" : "BACK_CHANNEL"
-}

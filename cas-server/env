@@ -1,0 +1,11 @@
+export USER_HOME_PATH=$(echo ~) 
+
+export DEV_DATA_PATH=$(pwd)/dev
+export DEV_DOCKER_COMPOSE_SERVICE=cas-server-dev
+
+export RC_BUILD_PATH=$(pwd)/build
+export RC_DOCKER_COMPOSE_SERVICE=cas-server
+export RC_DOCKER_IMAGE_BUILDER=OracleGao
+export RC_BUILD_DOCKER_IMAGE=cas:5.0.0
+export RC_RELEASE_DOCKER_IMAGE=dev.k2data.com.cn:5001/k2data/cas-server:0.4.0
+

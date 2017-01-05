@@ -1,0 +1,41 @@
+logging.config: file:/etc/cas/config/log4j2.xml
+
+cas.authn.accept.users=
+#cas.authn.file.separator=::
+#cas.authn.file.filename=file:/etc/cas/config/user.list
+#cas.authn.file.passwordEncoder.type=NONE
+#cas.authn.file.principalTransformation.caseConversion=NONE
+
+cas.locale.defaultValue=zh_CN
+
+cas.serviceRegistry.config.location=file:/etc/cas/config/services
+
+cas.logout.followServiceRedirects=true
+
+cas.authn.pm.enabled=false
+
+#cas.authn.attributeRepository.attributes.uid=uid
+#cas.authn.attributeRepository.merger=MERGE
+#cas.authn.attributeRepository.json.config.location=file:/etc/cas/config/attribute-repository.json
+
+cas.authn.jdbc.query[0].sql=SELECT password FROM t_user WHERE status = 1 AND username=?
+cas.authn.jdbc.query[0].healthQuery=SELECT 1 FROM t_user LIMIT 1
+cas.authn.jdbc.query[0].url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true
+cas.authn.jdbc.query[0].user=root
+cas.authn.jdbc.query[0].password=passw0rd
+cas.authn.jdbc.query[0].driverClass=com.mysql.jdbc.Driver
+cas.authn.jdbc.query[0].passwordEncoder.type=NONE
+
+cas.authn.attributeRepository.jdbc.sql=SELECT user_id, username, cname, role_id FROM t_user WHERE {0}
+cas.authn.attributeRepository.jdbc.username=username
+cas.authn.attributeRepository.jdbc.healthQuery=SELECT 1 FROM t_user LIMIT 1
+cas.authn.attributeRepository.jdbc.url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true
+cas.authn.attributeRepository.jdbc.user=root
+cas.authn.attributeRepository.jdbc.password=passw0rd
+cas.authn.attributeRepository.jdbc.driverClass=com.mysql.jdbc.Driver
+
+cas.httpWebRequest.cors.enabled=true
+cas.httpWebRequest.cors.allowCredentials=true
+cas.httpWebRequest.cors.allowOrigins[0]=*
+
+server.session.timeout=1800

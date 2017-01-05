@@ -8,9 +8,9 @@ WORKDIR /cas
 
 COPY cas.war .
 COPY etc/cas /etc/cas
+COPY entrypoint.sh entrypoint.sh
 
-
-ENTRYPOINT ["java", "-jar", "cas.war"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 EXPOSE 8443
 

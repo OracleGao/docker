@@ -53,7 +53,7 @@
 -->
     </Appenders>
     <Loggers>
-        <AsyncLogger name="org.apereo" level="info" additivity="false" includeLocation="true">
+        <AsyncLogger name="org.apereo" level="debug" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
 <!--
             <AppenderRef ref="casFile"/>
@@ -220,7 +220,7 @@
 -->
         </AsyncLogger>
         <AsyncLogger name="perfStatsLogger" level="info" additivity="false" includeLocation="true">
-            <AppenderRef ref="casConsole"/>i
+<!--            <AppenderRef ref="casConsole"/> -->
 <!--
             <AppenderRef ref="casPerf"/>
 -->
@@ -232,7 +232,7 @@
 -->
         </AsyncLogger>
         <AsyncLogger name="org.apereo.inspektr.audit.support" level="info" includeLocation="true">
-            <AppenderRef ref="casConsole"/>
+<!--            <AppenderRef ref="casConsole"/> -->
 <!--
             <AppenderRef ref="casAudit"/>
             <AppenderRef ref="casFile"/>
