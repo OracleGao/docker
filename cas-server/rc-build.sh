@@ -8,7 +8,7 @@ cp -a ${DEV_DATA_PATH}/etc ${RC_BUILD_PATH}/.
 docker cp ${RC_DOCKER_CONTAINER_NAME_DEV}:/cas-overlay/target/cas.war ${RC_BUILD_PATH}/.
 
 cd ${RC_BUILD_PATH}
-docker build -t cas:5.0.0 \
+docker build -t ${RC_BUILD_DOCKER_IMAGE} \
   --build-arg buildtime="$(date +"%Y-%m-%d %T")"  \
   --build-arg builder="${RC_DOCKER_IMAGE_BUILDER}" .
 
