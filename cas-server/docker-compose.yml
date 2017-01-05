@@ -6,7 +6,7 @@ version: '2'
 services:
   cas-server:
     restart: always
-    image: cas:5.0.0
+    image: ${RC_BUILD_DOCKER_IMAGE}
     ports:
       - 8443:8443
     volumes:
