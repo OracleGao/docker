@@ -14,25 +14,38 @@ cas.logout.followServiceRedirects=true
 
 cas.authn.pm.enabled=false
 
+#cas.ticket.security.encryptionKey=s7KdzljHTaKonOz8-oXuoiY4F8n5pW1KMSZO1fm6tBE
+#cas.ticket.security.signingKey=67-HeKr6Nis45UUivkC9OvWTMh0kyFihc2E7rXBTgto-KyRjhG8pezH1AFOfYWcxBGNXcImZSnCZZ8AyA6EjMw
+
+cas.authn.token.crypto.signing.key=s7KdzljHTaKonOz8-oXuoiY4F8n5pW1KMSZO1fm6tBE
+cas.authn.token.crypto.encryption.key=67-HeKr6Nis45UUivkC9OvWTMh0kyFihc2E7rXBTgto-KyRjhG8pezH1AFOfYWcxBGNXcImZSnCZZ8AyA6EjMw
+
+cas.tgc.signingKey=jlAxKm3L7tgpitRcR_41dpf9AlIU8S_9r0naYJxrFMoU2bW5C4W1BUfPOND8slx2YhWoThk0rQhtF4uFuL4apw
+cas.tgc.encryptionKey=qdLyDwUaA8UAYSFdLKDml2A_n7rxZqRwmg_2hN868Q4
+
+cas.webflow.encryption.key=DIpYkOzKZwqqZPJZ
+cas.webflow.signing.key=rUbehweduzOBkJUi4WfVKAuE4UERKMmVlKf8nJWOcecqfmmsEhJXvccBwHy4GsT7uMVobYrvfEMeUEMx0C5eNg
+
+
 #cas.authn.attributeRepository.attributes.uid=uid
 #cas.authn.attributeRepository.merger=MERGE
 #cas.authn.attributeRepository.json.config.location=file:/etc/cas/config/attribute-repository.json
 
 cas.authn.jdbc.query[0].sql=SELECT password FROM t_user WHERE status = 1 AND username=?
 cas.authn.jdbc.query[0].healthQuery=SELECT 1 FROM t_user LIMIT 1
-cas.authn.jdbc.query[0].url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true
+cas.authn.jdbc.query[0].url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
 cas.authn.jdbc.query[0].user=root
 cas.authn.jdbc.query[0].password=passw0rd
-cas.authn.jdbc.query[0].driverClass=com.mysql.jdbc.Driver
+cas.authn.jdbc.query[0].driverClass=com.mysql.cj.jdbc.Driver
 cas.authn.jdbc.query[0].passwordEncoder.type=NONE
 
-cas.authn.attributeRepository.jdbc.sql=SELECT user_id, username, cname, role_id FROM t_user WHERE {0}
-cas.authn.attributeRepository.jdbc.username=username
-cas.authn.attributeRepository.jdbc.healthQuery=SELECT 1 FROM t_user LIMIT 1
-cas.authn.attributeRepository.jdbc.url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true
-cas.authn.attributeRepository.jdbc.user=root
-cas.authn.attributeRepository.jdbc.password=passw0rd
-cas.authn.attributeRepository.jdbc.driverClass=com.mysql.jdbc.Driver
+cas.authn.attributeRepository.jdbc[0].sql=SELECT user_id, username, cname, role_id FROM t_user WHERE {0}
+cas.authn.attributeRepository.jdbc[0].username=username
+cas.authn.attributeRepository.jdbc[0].healthQuery=SELECT 1 FROM t_user LIMIT 1
+cas.authn.attributeRepository.jdbc[0].url=jdbc:mysql://@CAS_DATABASE_HOST@:@CAS_DATABASE_PORT@/kmx_users?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+cas.authn.attributeRepository.jdbc[0].user=root
+cas.authn.attributeRepository.jdbc[0].password=passw0rd
+cas.authn.attributeRepository.jdbc[0].driverClass=com.mysql.cj.jdbc.Driver
 
 cas.httpWebRequest.cors.enabled=true
 cas.httpWebRequest.cors.allowCredentials=true

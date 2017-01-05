@@ -1,5 +1,4 @@
 #!/bin/sh
-set -ex
 
 if [ -z ${CAS_DATABASE_HOST} ]; then
   echo "CAS_DATABASE_HOST invalidate"
