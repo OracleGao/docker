@@ -65,6 +65,12 @@
 	    <artifactId>cas-server-support-json-service-registry</artifactId>
             <version>${cas.version}</version>
         </dependency>
+        <!-- JWT support -->
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-token-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
         <!-- Whitelist Authentication -->
         <dependency>
             <groupId>org.apereo.cas</groupId>
@@ -83,20 +89,10 @@
         </dependency>
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-pac4j-webflow</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp</artifactId>
             <version>${cas.version}</version>
             <type>war</type>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-support-token-webflow</artifactId>
-            <version>${cas.version}</version>
         </dependency>
     </dependencies>
 
