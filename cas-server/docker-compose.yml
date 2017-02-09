@@ -10,14 +10,14 @@ services:
     ports:
       - 8443:8443
     volumes:
-     - /etc/localtime:/etc/localtime:ro
-     - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     environment:
       cas.server.name: https://10.1.10.20:8443
       cas.server.prefix: https://10.1.10.20:8443/cas
       cas.adminPagesSecurity.ip: 10.1.50.54
       CAS_DATABASE_HOST: 10.1.10.20
-      CAS_DATABASE_PORT: 23306
+      CAS_DATABASE_PORT: 23307
     logging:
        options:
          max-size: 1g
@@ -33,6 +33,8 @@ services:
       - ${DEV_DATA_PATH}/etc/cas:/cas-overlay/etc/cas
       - ${DEV_DATA_PATH}/src:/cas-overlay/src
       - ${DEV_DATA_PATH}/pom.xml:/cas-overlay/pom.xml
+      - ${CURRENT_PATH}/lib/local_policy.jar:/opt/jre-home/lib/security/local_policy.jar
+      - ${CURRENT_PATH}/lib/US_export_policy.jar:/opt/jre-home/lib/security/US_export_policy.jar
     logging:
       options:
         max-size: 1g

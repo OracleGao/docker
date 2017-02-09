@@ -3,11 +3,12 @@ MAINTAINER gaojingzhe1983@126.com
 
 USER root
 
+COPY etc/cas /etc/cas
+
 RUN mkdir -p /cas
 WORKDIR /cas
 
 COPY cas.war .
-COPY etc/cas /etc/cas
 COPY entrypoint.sh entrypoint.sh
 
 ENTRYPOINT ["./entrypoint.sh"]

@@ -1,17 +1,17 @@
 export USER_HOME_PATH=$(echo ~) 
 
-export DEV_DATA_PATH=$(pwd)/dev
+export CURRENT_PATH=$(pwd)
+export DEV_DATA_PATH=${CURRENT_PATH}/dev
 export DEV_DOCKER_COMPOSE_SERVICE=cas-server-dev
 
 #cas mysql database support
 export DEV_DATABASE_HOST=10.1.10.20
-export DEV_DATABASE_PORT=23306
+export DEV_DATABASE_PORT=23307
 
-export RC_BUILD_PATH=$(pwd)/build
+export RC_BUILD_PATH=${CURRENT_PATH}/build
 export RC_DOCKER_COMPOSE_SERVICE=cas-server
-export RC_DOCKER_IMAGE_BUILDER=OracleGao
+export RC_DOCKER_IMAGE_BUILDER=gaojingzhe
 export RC_BUILD_DOCKER_IMAGE=cas:5.1.0-RC1
 export RC_DOCKER_CONTAINER_NAME_DEV=casserver_cas-server-dev_1
-export RC_RELEASE_DOCKER_IMAGE=dev.k2data.com.cn:5001/k2data/cas-server:0.4.0
-
+export RC_RELEASE_DOCKER_IMAGE=dev.k2data.com.cn:5001/k2data/cas-server:$(git rev-parse --abbrev-ref HEAD)-0.4.0
 

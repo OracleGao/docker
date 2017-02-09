@@ -83,6 +83,11 @@
         </dependency>
         <dependency>
             <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-pac4j-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-webapp</artifactId>
             <version>${cas.version}</version>
             <type>war</type>
