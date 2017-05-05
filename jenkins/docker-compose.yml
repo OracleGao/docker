@@ -18,6 +18,7 @@ services:
       - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
       - /usr/local/lib/python2.7:/usr/local/lib/python2.7
       - ~/.docker:/root/.docker
+      - ${MAVEN_LIB}/.m2:/root/.m2
       - /usr/lib/x86_64-linux-gnu/libapparmor.so.1:/usr/lib/x86_64-linux-gnu/libapparmor.so.1
       - /lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0
       - /lib/x86_64-linux-gnu/libcgmanager.so.0:/lib/x86_64-linux-gnu/libcgmanager.so.0
