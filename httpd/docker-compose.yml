@@ -1,0 +1,18 @@
+#docker 1.10.1
+#docker-compose: 1.6.2
+
+version: '2'
+
+services:
+  httpd:
+    restart: always
+    image: httpd:2.4-alpine
+    ports:
+      - 17320:80
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - ${HTML_HOME}:/usr/local/apache2/htdocs
+    logging:
+       options:
+         max-size: 1g
