@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  cloud-bxgysc:
+    restart: always
+    image: tomcat:8.5.15-jre8-alpine
+    ports:
+      - ${PORT}:8080
+    volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - /etc/timezone:/etc/timezone:ro
+     - ${WEBAPPS_PATH}:/usr/local/tomcat/webapps
+     - ${WORK_PATH}:/usr/local/tomcat/work
+     - ${LOGS_PATH}:/usr/local/tomcat/logs
+    logging:
+       options:
+         max-size: 1g

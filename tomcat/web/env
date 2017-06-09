@@ -1,0 +1,5 @@
+##Docker Container Config
+export WEBAPPS_PATH=${TOMCAT_WEBAPPS_PATH:-/tmp/tomcat/webapps}
+export WORK_PATH=${TOMCAT_WORK_PATH:-/tmp/tomcat/work}
+export LOGS_PATH=${TOMCAT_LOGS_PATH:-/tmp/tomcat/logs}
+export PORT=${TOMCAT_PORT:-8080}
