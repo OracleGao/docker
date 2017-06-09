@@ -1,0 +1,2 @@
+export MAVEN_LIB=$(echo ~)
+export JENKINS_DEPLOY_HOME=$(pwd)

@@ -4,10 +4,10 @@ services:
   jenkins2:
     user: root
     restart: always
-    image: jenkinsci/jenkins:2.23
+    image: jenkins:2.46.3-alpine
     ports:
-      - "16923:8080"
-      - "50001:50000"
+      - "8230:8080"
+      - "50000:50000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
