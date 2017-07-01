@@ -7,13 +7,11 @@ services:
       - ${PORT}:3306
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
+      - ${DATA_PATH}:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${SCHEMA}
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
     command: --lower_case_table_names=1 --character-set-server=utf8 --collation-server=utf8_general_ci
-    volumes:
-      - ${DATA_PATH}:/var/lib/mysql
     logging:
       options:
         max-size: 1g
