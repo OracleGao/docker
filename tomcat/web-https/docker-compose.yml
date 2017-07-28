@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  cloud-bxgysc:
+    restart: always
+    image: tomcat:${IMAGE_TAG}
+    ports:
+      - ${PORT}:8080
+      - ${HTTPS_PORT}:8443
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+     - ${WEBAPPS_PATH}:/usr/local/tomcat/webapps
+     - ${WORK_PATH}:/usr/local/tomcat/work
+     - ${LOGS_PATH}:/usr/local/tomcat/logs
+     - ${KEY_STORE_FILE}:/usr/local/tomcat/conf/tomcat.jks
+     - ${SERVER_XML_FILE}:/usr/local/tomcat/conf/server.xml 
+    logging:
+       options:
+         max-size: 1g
