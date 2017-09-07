@@ -1,0 +1,5 @@
+##Docker Container Config
+export HTML_PATH=${HTML_PATH:-/tmp/html}
+export PORT=${PORT:-38080}
+export PHP_INI=$(pwd)/conf/php.ini
+export ICON_CUBE_SO=$(pwd)/lib/ioncube_loader_lin_5.6.so

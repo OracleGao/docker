@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  php-zend-iconCube:
+    restart: always
+    image: php-zendserver:5.6
+    ports:
+      - ${PORT}:80
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+     - ${HTML_PATH}:/var/www/html
+     - ${PHP_INI}:/usr/local/zend/etc/php.ini
+     - ${ICON_CUBE_SO}:/usr/local/zend/lib/php_extensions/ioncube_loader_lin_5.6.so
+    logging:
+       options:
+         max-size: 1g
