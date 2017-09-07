@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  cloud-bxgysc:
+  tomcat-https:
     restart: always
     image: tomcat:${IMAGE_TAG}
     ports:

@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  cloud-bxgysc:
+  tomcat:
     restart: always
     image: tomcat:8.5.15-jre8-alpine
     ports:
