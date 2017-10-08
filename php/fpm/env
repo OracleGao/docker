@@ -1,0 +1,10 @@
+##Docker Container Config
+export NGINX_IMAGE_VERSION=${NGINX_IMAGE_VERSION:-1.13.5}
+export PHP_FPM_IMAGE_VERSION=${PHP_FPM_IMAGE_VERSION:-5.6.31}
+export PORT=${PORT:-9090}
+
+export WWW_PATH=${HTML_PATH:-/tmp/html}
+
+export PHP_INI=$(pwd)/conf/php.ini
+
+export NGINX_PHP_CONF=$(pwd)/conf/nginx-php.conf

@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  nginx-web:
+    restart: always
+    image: nginx:${NGINX_IMAGE_VERSION}
+    links:
+      - php-fpm
+    ports:
+      - ${PORT}:80
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${NGINX_PHP_CONF}:/etc/nginx/conf.d/default.conf
+      - ${WWW_PATH}:/usr/share/nginx/html
+    logging:
+       options:
+         max-size: 20mb
+
+  php-fpm:
+    restart: always
+    image: php:${PHP_FPM_IMAGE_VERSION}-fpm
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+      - ${PHP_INI}:/usr/local/etc/php/php.ini
+    logging:
+       options:
+         max-size: 20mb
