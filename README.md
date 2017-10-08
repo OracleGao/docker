@@ -17,15 +17,15 @@ apt-get update
 ### debug tools
 - netstat
 ```shell
-apt-get install -y net-tools
+apt-get install -y --allow-unauthenticated net-tools
 ```
 - ps
 ```shell
-apt-get install -y procps
+apt-get install -y --allow-unauthenticated procps
 ```
 - vim
 ```shell
-apt-get install -y vim
+apt-get install -y --allow-unauthenticated vim
 ```
 
 # Reference
