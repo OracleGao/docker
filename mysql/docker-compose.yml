@@ -8,7 +8,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DATA_PATH}:/var/lib/mysql
+      - ${INIT_DATABASE_PATH}:/docker-entrypoint-initdb.d:ro
     environment:
+      TZ: Asia/Shanghai
       MYSQL_DATABASE: ${SCHEMA}
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
     command: --lower_case_table_names=1 --character-set-server=utf8 --collation-server=utf8_general_ci
