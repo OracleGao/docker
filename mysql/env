@@ -1,6 +1,6 @@
 export IMAGE_VERSION=${MYSQL_IMAGE_VERSION:-5.7.18}
-export PORT=${MYSQL_PORT:-53308}
-export SCHEMA=${MYSQL_SCHEMA:-tmp_db}
+export PORT=${MYSQL_PORT:-3306}
+export SCHEMA=${MYSQL_SCHEMA:-helloworld}
 export INIT_DATABASE_PATH=${INIT_DATABASE_PATH:-$(pwd)/sql}
 export ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-passw0rd}
-export DATA_PATH=${MYSQL_DATA_PATH:-/tmp/mysql_tmp_db}
+export DATA_PATH=${MYSQL_DATA_PATH:-/tmp/mysql/helloworld}
