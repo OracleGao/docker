@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  samba:
+    restart: always
+    image: kartoffeltoby/docker-nas-samba:latest
+    ports:
+      - 139:139
+    environment:
+      - TZ=Asia/Shanghai
+      - USER=${USERNAME}
+      - PASSWORD=${PASSWORD}
+    volumes:
+      - ${SAMBA_PATH}:/home/${USERNAME}
+    logging:
+       options:
+         max-size: 20mb

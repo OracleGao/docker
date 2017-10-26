@@ -1,0 +1,4 @@
+##Docker Container Config
+export USERNAME=${USERNAME:-test}
+export PASSWORD=${PASSWORD:-test}
+export SAMBA_PATH=${SAMBA:-/tmp/samba}
