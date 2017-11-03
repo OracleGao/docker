@@ -30,7 +30,7 @@ apt-get install -y --allow-unauthenticated vim
 
 # docker remote control
 ## centos7
-- edit the file "/usr/lib/systemd/system/docker.service"
+- Edit the file "/usr/lib/systemd/system/docker.service", add "-H unix:///var/run/docker.sock -H tcp://0.0.0.0:1103" after "ExecStart=/usr/bin/dockerd"
 ```text
 [Service]
 Type=notify
@@ -38,21 +38,24 @@ Type=notify
 # exists and systemd currently does not support the cgroup feature set required
 # for containers run by docker
 #ExecStart=/usr/bin/dockerd
-ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:8080
+ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:1103
 ```
-- execute shell cmd
+- Execute shell cmd
 ```shell
 systemctl daemon-reload
 service docker restart
 ```
-- verify
+- Verify
 ```shell
 ps -ax | grep docker
 ```
 ```text
-11609 ?        Ssl    0:00 /usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:8080
+11609 ?        Ssl    0:00 /usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:1103
 ```
-- if you install in Ali ECS instance, after the modification, you must restart the instance.
+```shell
+docker -H ${REMOTE_DOCKER_IP}:1103 ps
+```
+- If you install in Ali ECS instance, after the modification, you must restart the instance at first time.
 
 # Reference
 - [docker install](https://docs.docker.com/engine/installation/)
