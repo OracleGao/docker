@@ -28,8 +28,8 @@ apt-get install -y --allow-unauthenticated procps
 apt-get install -y --allow-unauthenticated vim
 ```
 
-# docker remote control
-## centos7
+# Docker Remote Control
+## Centos7
 - Edit the file "/usr/lib/systemd/system/docker.service", add "-H unix:///var/run/docker.sock -H tcp://0.0.0.0:1103" after "ExecStart=/usr/bin/dockerd"
 ```text
 [Service]
@@ -55,7 +55,7 @@ ps -ax | grep docker
 ```shell
 docker -H ${REMOTE_DOCKER_IP}:1103 ps
 ```
-- If you install in Ali ECS instance, after the modification, you must restart the instance at first time.
+- If you install the remoted docker service in Ali ECS instance, after the modification, you must restart the instance at first time.
 
 # Reference
 - [docker install](https://docs.docker.com/engine/installation/)
