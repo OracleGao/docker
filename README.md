@@ -28,6 +28,32 @@ apt-get install -y --allow-unauthenticated procps
 apt-get install -y --allow-unauthenticated vim
 ```
 
+# docker remote control
+## centos7
+- edit the file "/usr/lib/systemd/system/docker.service"
+```text
+[Service]
+Type=notify
+# the default is not to use systemd for cgroups because the delegate issues still
+# exists and systemd currently does not support the cgroup feature set required
+# for containers run by docker
+#ExecStart=/usr/bin/dockerd
+ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:8080
+```
+- execute shell cmd
+```shell
+systemctl daemon-reload
+service docker restart
+```
+- verify
+```shell
+ps -ax | grep docker
+```
+```text
+11609 ?        Ssl    0:00 /usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:8080
+```
+- if you install in Ali ECS instance, after the modification, you must restart the instance.
+
 # Reference
 - [docker install](https://docs.docker.com/engine/installation/)
 - [docker-compose github](https://github.com/docker/compose)
