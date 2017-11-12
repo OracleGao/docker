@@ -1,0 +1,2 @@
+export PORT=${PORT:-8080}
+export JAR_FILE=${JAR_FILE:-$(pwd)/jar/runnable.jar}

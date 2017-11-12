@@ -1,0 +1,15 @@
+version: '2'
+services:
+  jre-app:
+    restart: always
+    image: openjdk:8u151-jre-slim
+    ports:
+      - ${PORT}:8080
+    volumes:
+      - ${JAR_FILE}:/runnable.jar
+    environment:
+      TZ: Asia/Shanghai
+    command: java -jar /runnable.jar
+    logging:
+      options:
+        max-size: 10mb
