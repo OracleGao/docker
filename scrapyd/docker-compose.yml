@@ -1,0 +1,47 @@
+version: '3'
+services:
+  scrapyd:
+    image: vimagick/scrapyd
+    ports:
+      - "${SCRAPYD_HOST}:6800"
+    volumes:
+      - ${SCRAPYD_PATH}/eggs:/var/lib/scrapyd/eggs
+      - ${SCRAPYD_PATH}/items:/var/lib/scrapyd/items
+      - ${SCRAPYD_PATH}/logs:/var/lib/scrapyd/logs
+      - ${SCRAPYD_PATH}/dbs:/var/lib/scrapyd/dbs
+    networks:
+      - scrapyd
+    working_dir: /var/lib/scrapyd
+    restart: always
+    logging:
+      options:
+        max-size: 10mb
+
+  scrapyd-client:
+    image: vimagick/scrapyd
+    volumes:
+      - ${SCRAPY_SRC_PATH}:/code
+    working_dir: /code
+    links: 
+      - scrapyd
+    networks:
+      - scrapyd
+    logging:
+      options:
+        max-size: 10mb
+
+networks:
+  scrapyd:
+
+#  scrapyrt:
+#    image: vimagick/scrapyd
+#    command: scrapyrt -i 0.0.0.0 -p 9080
+#    ports:
+#      - "9080:9080"
+#    volumes:
+#      - .:/code
+#    working_dir: /code
+#    restart: always
+#    logging:
+#      options:
+#        max-size: 10mb

@@ -1,0 +1,3 @@
+export SCRAPYD_HOST=${SCRAPYD_HOST:-127.0.0.0:6800}
+export SCRAPYD_PATH=${SCRAPYD_PATH:-$(pwd)/data}
+export SCRAPY_SRC_PATH=${SCRAPY_SRC_PATH:-$(pwd)/src}
