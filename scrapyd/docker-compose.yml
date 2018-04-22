@@ -9,6 +9,8 @@ services:
       - ${SCRAPYD_PATH}/items:/var/lib/scrapyd/items
       - ${SCRAPYD_PATH}/logs:/var/lib/scrapyd/logs
       - ${SCRAPYD_PATH}/dbs:/var/lib/scrapyd/dbs
+    environment:
+      TZ: Asia/Shanghai
     networks:
       - scrapyd
     working_dir: /var/lib/scrapyd
@@ -21,6 +23,8 @@ services:
     image: vimagick/scrapyd
     volumes:
       - ${SCRAPY_SRC_PATH}:/code
+    environment:
+      TZ: Asia/Shanghai
     working_dir: /code
     links: 
       - scrapyd
