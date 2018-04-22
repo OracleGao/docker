@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+cd ${0%/*}
+
 source ./env
 
 if [ "$1" == "" ]; then
@@ -7,4 +9,4 @@ if [ "$1" == "" ]; then
 fi
 
 export SCRAPY_SRC_PATH=$SCRAPY_SRC_PATH/$1
-docker-compose run scrapyd-client scrapyd-client deploy 
+docker-compose run --rm scrapyd-client scrapyd-client deploy 
