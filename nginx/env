@@ -1,0 +1,4 @@
+export PORT=${NGINX_PORT:-80}
+export LOG_PATH=${NGINX_LOG_PATH:-./log}
+export CONF_PATH=${NGINX_CONF_PATH:-./conf}
+export WWW_PATH=${NGINX_WWW_PATH:-./www}

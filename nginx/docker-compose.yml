@@ -1,0 +1,17 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: nginx:stable
+    ports:
+      - ${PORT}:80
+    volumes:
+      - ${WWW_PATH}:/www/
+      - ${CONF_PATH}:/etc/nginx/conf.d/
+      - ${LOG_PATH}:/var/log/nginx/
+    working_dir: /www
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
