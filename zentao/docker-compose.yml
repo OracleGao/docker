@@ -1,0 +1,18 @@
+version: '2'
+services:
+  zentao:
+    restart: always
+    image: idoop/zentao:latest
+    ports:
+      - ${PORT}:80
+      - ${DB_PORT}:3306
+    volumes:
+      - ${DATA_PATH}:/opt/zbox/
+    environment:
+      TZ: Asia/Shanghai
+      USER: 'root'
+      PASSWD: 'changeit'
+      BIND_ADDRESS: 'false'
+    logging:
+      options:
+        max-size: 10mb
