@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       USER: 'root'
-      PASSWD: 'changeit'
+      PASSWD: '123456'
       BIND_ADDRESS: 'false'
     logging:
       options:
