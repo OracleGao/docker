@@ -27,7 +27,10 @@ apt-get install -y --allow-unauthenticated procps
 ```shell
 apt-get install -y --allow-unauthenticated vim
 ```
-
+- ping
+```shell
+apt-get install -y iputils-ping
+```
 # Docker Remote Control
 ## Centos7
 - Edit the file "/usr/lib/systemd/system/docker.service", add "-H unix:///var/run/docker.sock -H tcp://0.0.0.0:1103" after "ExecStart=/usr/bin/dockerd"
