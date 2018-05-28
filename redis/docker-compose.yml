@@ -1,0 +1,14 @@
+version: '2'
+services:
+  redis:
+    restart: always
+    image: redis:4.0.9-alpine
+    ports:
+      - ${PORT}:6379
+    volumes:
+      - ${DATA_PATH}:/data
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
