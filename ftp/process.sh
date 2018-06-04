@@ -19,7 +19,7 @@ do
     for file in $(ls -1 ${dataPath}/${item})
     do
       if [ "${file}" != "his" ]; then
-        echo $(date +"%Y-%m-%d %H:%M:%S") "mv ${dataPath}/${item}/${file} ${hisPath}/${yesterday}_${file}"
+        echo $(date +"%Y-%m-%d %H:%M:%S") "mv ${dataPath}/${item}/${file} ${hisPath}/${yesterday}_${file}" >> ${log}
         mv ${dataPath}/${item}/${file} ${hisPath}/${yesterday}_${file}
       fi
     done
