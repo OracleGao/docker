@@ -1,0 +1,19 @@
+version: '2'
+services:
+  pure-ftpd:
+    restart: always
+    image: stilliard/pure-ftpd:hardened
+    ports:
+      - ${FTP_PORT}:21
+      - 30001-30040:30001-30040
+    volumes:
+      - ${FTP_DATA_PATH}:/home/ftpusers/
+      - ${FTP_DB_PATH}:/etc/pure-ftpd/passwd/
+    working_dir: /home/ftpusers
+    command: /run.sh -c 20 -C 20 -l puredb:/etc/pure-ftpd/pureftpd.pdb -E -j -R -P localhost -p 30001:30040
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
+

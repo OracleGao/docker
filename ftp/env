@@ -1,0 +1,3 @@
+export FTP_PORT=${FTP_PORT:-21}
+export FTP_DATA_PATH=${FTP_DATA_PATH:-$(pwd)/data}
+export FTP_DB_PATH=${FTP_DB_PATH:-$(pwd)/db}
