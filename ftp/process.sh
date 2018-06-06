@@ -5,7 +5,6 @@ dataPath=$(pwd)/data/cpic/data
 month=$(date "+%Y%m")
 yesterday=$(date "+%Y%m%d" -d "-1 days")
 
-mkdir -p $(pwd)/log
 log=$(pwd)/log/process.out
 
 echo "==============================================" >> ${log}
@@ -16,6 +15,7 @@ do
   if [ ${count} -gt 1 ]; then
     hisPath=${dataPath}/${item}/his/${month}
     mkdir -p ${hisPath}
+    IFS=$'\n\n'
     for file in $(ls -1 ${dataPath}/${item})
     do
       if [ "${file}" != "his" ]; then
