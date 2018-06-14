@@ -1,0 +1,73 @@
+version: '2'
+
+services:
+  nginx:
+    restart: always
+    image: nginx:stable
+    ports:
+      - ${PORT}:80
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+      - ${NGINX_CONF_PATH}:/etc/nginx/conf.d/
+      - ${NGINX_LOG_PATH}:/var/log/nginx/
+    working_dir: /var/www/html
+    user: root
+    depends_on:
+      - php-fpm
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      - laravel
+    logging:
+      options:
+        max-size: 10mb
+
+  php-fpm:
+    restart: always
+    image: ${LARAVEL_IMAGE}
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+    working_dir: /var/www/html
+    user: root
+#    depends_on:
+#      - mysql
+    networks:
+      - laravel
+    logging:
+       options:
+         max-size: 10mb
+
+#  mysql:
+#    restart: always
+#    image: mysql:5.7.18
+#    ports:
+#      - ${DB_PORT}:3306
+#    volumes:
+#      - ${MYSQL_DATA_PATH}:/var/lib/mysql
+#      - ${MYSQL_INIT_DATABASE_PATH}:/docker-entrypoint-initdb.d:ro
+#    environment:
+#      TZ: Asia/Shanghai
+#      MYSQL_DATABASE: ${MYSQL_SCHEMA}
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#    command: --lower_case_table_names=1 --character-set-server=utf8 --collation-server=utf8_general_ci
+#    networks:
+#      - laravel
+#    logging:
+#      options:
+#        max-size: 10mb
+
+  composer:
+    image: laravel-base:1.0
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${SRC_PATH}:/var/www/html
+    working_dir: /var/www/html/${PROJECT_NAME}
+    entrypoint:
+      - composer
+      - install
+
+networks:
+  laravel:

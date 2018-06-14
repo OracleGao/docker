@@ -1,0 +1,23 @@
+##Docker Container Config
+
+export PROJECT_NAME=crm-service
+export SRC_PATH=$(pwd)/src
+export WWW_PATH=${SRC_PATH}/${PROJECT_NAME}
+export NGINX_CONF_PATH=$(pwd)/conf/nginx
+export NGINX_LOG_PATH=$(pwd)/log/nginx
+export PORT=8070
+export MYSQL_PORT=8071
+
+### build image ###
+# Possible values for core-ext-name:
+# bcmath bz2 calendar ctype curl dba dom enchant exif fileinfo filter ftp gd gettext gmp hash iconv imap interbase intl json ldap mbstring mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell readline recode reflection session shmop simplexml snmp soap sockets sodium spl standard sysvmsg sysvsem sysvshm tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zend_test zip
+
+export CORE_EXT="pdo_mysql"
+
+export LARAVEL_BASE_IMAGE=${LARAVEL_BASE_IMAGE:-php:7.2.5-fpm}
+
+export LARAVEL_IMAGE_NAME=${LARAVEL_IMAGE_NAME:-laravel}
+export LARAVEL_IMAGE_VERSION=${LARAVEL_IMAGE_VERSION:-1.0}
+
+export LARAVEL_IMAGE=${LARAVEL_IMAGE_NAME}:${LARAVEL_IMAGE_VERSION}
+
