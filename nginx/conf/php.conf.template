@@ -14,9 +14,10 @@ server {
         proxy_set_header X-Real-Port $remote_port;
     }
     location ~ \.php$ {
-        add_header 'Access-Control-Allow-Origin' '*';         # support cors
-        add_header 'Access-Control-Allow-Credentials' 'true'; # support cors
-        add_header 'Access-Control-Allow-Headers' '*';        # support cors
+        add_header 'Access-Control-Allow-Origin' '*' always;                   # cors support
+        add_header 'Access-Control-Allow-Headers' '*' always;                  # cors support
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always; # cors support
+        add_header 'Access-Control-Allow-Credentials' 'true' always;           # cors support
 
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         # php-fpm service
