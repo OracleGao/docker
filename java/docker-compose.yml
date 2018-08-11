@@ -2,11 +2,11 @@ version: '2'
 services:
   jre-app:
     restart: always
-    image: openjdk:8u151-jre-slim
+    image: openjdk:8u171-jre-slim
     ports:
       - ${PORT}:8080
     volumes:
-      - ${JAR_FILE}:/runnable.jar
+      - ${JAR_FILE}:/runnable.jar:ro
     environment:
       TZ: Asia/Shanghai
     command: java -jar /runnable.jar
