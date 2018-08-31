@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  [NGINX]:
+    restart: always
+    image: nginx:stable
+    ports:
+      - ${PORT}:80
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+      - ${NGINX_CONF_PATH}:/etc/nginx/conf.d/
+      - ${NGINX_LOG_PATH}:/var/log/nginx/
+    working_dir: /var/www/html
+    user: root
+    depends_on:
+      - [PHPFPM]
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      - [NETWORK]
+    logging:
+      options:
+        max-size: 10mb
+
+  [PHPFPM]:
+    restart: always
+    image: ${LARAVEL_IMAGE}
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+    working_dir: /var/www/html
+    user: root
+    networks:
+      - [NETWORK]
+    logging:
+       options:
+         max-size: 10mb
+
+networks:
+  [NETWORK]:
