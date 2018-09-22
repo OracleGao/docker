@@ -5,8 +5,11 @@ USER root
 
 RUN set -ex \
     && apk add --no-cache \
+    zlib \
+    libffi \
     libxml2 \
     openssl \
+    libxslt \
     tiff
 
 RUN set -ex \
