@@ -2,7 +2,6 @@
 cd ${0%/*}
 
 mkdir -p data
-mkdir -p src
 
 source ./env
 
