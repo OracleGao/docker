@@ -3,5 +3,5 @@ cd ${0%/*}
 
 source ./env
 
-docker build -t scrapyd-kafka:1.0 .
+docker build -t scrapyd-kafka:1.0 ./build/.
 

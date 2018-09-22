@@ -1,0 +1,39 @@
+version: '3'
+services:
+  scrapyd:
+    image: scrapyd-kafka:1.0
+    ports:
+      - "${SCRAPYD_HOST}:6800"
+    volumes:
+      - ${SCRAPYD_PATH}/eggs:/var/lib/scrapyd/eggs
+      - ${SCRAPYD_PATH}/items:/var/lib/scrapyd/items
+      - ${SCRAPYD_PATH}/logs:/var/lib/scrapyd/logs
+      - ${SCRAPYD_PATH}/dbs:/var/lib/scrapyd/dbs
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      - scrapyd
+    working_dir: /var/lib/scrapyd
+    restart: always
+    logging:
+      options:
+        max-size: 10mb
+
+  scrapyd-client:
+    image: scrapyd-kafka:1.0
+    volumes:
+      - ${SCRAPY_SRC_PATH}:/code
+    environment:
+      TZ: Asia/Shanghai
+    working_dir: /code
+    links: 
+      - scrapyd
+    networks:
+      - scrapyd
+    logging:
+      options:
+        max-size: 10mb
+
+networks:
+  scrapyd:
+
