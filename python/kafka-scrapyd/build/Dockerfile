@@ -35,7 +35,8 @@ RUN set -ex \
                    scrapyd-client \
                    scrapy-splash \
                    scrapyrt \
-                   Pillow
+                   Pillow \
+                   request
 RUN set -ex \
     && mkdir -p /usr/src \
     && cd /usr/src \
