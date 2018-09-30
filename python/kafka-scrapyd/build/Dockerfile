@@ -36,7 +36,9 @@ RUN set -ex \
                    scrapy-splash \
                    scrapyrt \
                    Pillow \
-                   request
+                   request \
+                   requests \
+                   bs4
 RUN set -ex \
     && mkdir -p /usr/src \
     && cd /usr/src \
