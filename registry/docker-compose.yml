@@ -1,0 +1,15 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: registry:latest
+    ports:
+      - ${PORT}:5000
+    volumes:
+      - ${REGISTRY_PATH}:/var/lib/registry
+      - ${CONFIG_FILE}:/etc/docker/registry/config.yml
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
