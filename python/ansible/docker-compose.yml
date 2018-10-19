@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  ansible:
+    image: williamyeh/ansible:ubuntu16.04
+    volumes:
+      - ${CONFIG_PATH}:/etc/ansible:ro
+      - ${PLAYBOOK_PATH}:/playbook:ro
+    environment:
+      TZ: Asia/Shanghai
+    working_dir: /playbook
+    logging:
+      options:
+        max-size: 10mb
+
