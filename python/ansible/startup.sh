@@ -4,4 +4,4 @@ cd ${0%/*}
 
 source ./env
 
-docker-compose run --rm ansible ansible-playbook ./playbook.yml
+docker-compose run --rm ansible ansible-playbook --flush-cache ./docker.yml

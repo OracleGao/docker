@@ -4,7 +4,7 @@
 [storage]
 192.168.8.[131:138]     ansible_python_interpreter=/usr/bin/python3    ansible_sudo_pass='2wsx@WSX'
 
-[testgfs]
+[docker]
 47.93.46.69   ansible_ssh_user="root" ansible_ssh_pass="1qaz2wsx+casia+cnr"
 47.94.251.100 ansible_ssh_user="root" ansible_ssh_pass="1qaz2wsx+casia+cnr"
 47.95.239.40  ansible_ssh_user="root" ansible_ssh_pass="1qaz2wsx+casia+cnr"

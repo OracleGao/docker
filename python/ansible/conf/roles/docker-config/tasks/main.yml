@@ -1,0 +1,17 @@
+---
+- name: copy docker.service process script
+  copy:
+    src: process-docker-service.sh
+    dest: /tmp
+    mode: 0755
+
+- name: process docker.service
+  shell: /tmp/process-docker-service.sh
+  notify: upgrade systemd config  
+
+- name: copy daemon.json
+  template:
+    src: daemon.json
+    dest: /etc/docker
+    mode: 0655
+  notify: restart docker service

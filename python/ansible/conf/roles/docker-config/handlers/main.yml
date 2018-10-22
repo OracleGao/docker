@@ -1,0 +1,10 @@
+---
+- name: upgrade systemd config
+  shell: systemctl daemon-reload
+
+- name: restart docker service
+  listen: upgrade systemd config
+  service:
+    name: docker
+    state: restarted
+    enabled: yes

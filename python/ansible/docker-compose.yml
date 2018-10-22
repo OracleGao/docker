@@ -5,7 +5,7 @@ services:
     image: williamyeh/ansible:ubuntu16.04
     volumes:
       - ${CONFIG_PATH}:/etc/ansible:ro
-      - ${PLAYBOOK_PATH}:/playbook:ro
+      - ${PLAYBOOK_PATH}:/playbook
     environment:
       TZ: Asia/Shanghai
     working_dir: /playbook

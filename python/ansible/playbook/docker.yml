@@ -1,0 +1,7 @@
+- name: docker
+  hosts: docker
+
+  roles:
+    - docker
+    - docker-config
+#    - docker-compose
