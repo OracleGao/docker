@@ -3,6 +3,7 @@
   #Author OracleGao
   #Date 2018-10-22
   #Reference: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  # @Deprecated
 
 ##########################################
 

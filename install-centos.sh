@@ -3,6 +3,7 @@
   #Author OracleGao
   #Date 2017-07-27
   #Reference: https://docs.docker.com/engine/installation/linux/docker-ce/centos/#install-using-the-repository
+  # @Deprecated
 
 ##########################################
 
