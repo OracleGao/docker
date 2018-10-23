@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ##########################################
 
   #Author OracleGao
@@ -6,9 +7,6 @@
   #           https://docs.docker.com/install/linux/docker-ce/centos/
 
 ##########################################
-
-#!/usr/bin/env bash
-set -ex
 
 export PATH=${PATH:-.}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
 

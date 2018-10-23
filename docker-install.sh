@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ##########################################
 
   #Author OracleGao
@@ -7,7 +9,6 @@
 
 ##########################################
 
-#!/usr/bin/env bash
 set -ex
 
 export PATH=${PATH:-.}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin

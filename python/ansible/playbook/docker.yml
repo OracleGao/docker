@@ -1,7 +1,11 @@
 - name: docker
   hosts: docker
+  remote_user: demo
+  become: yes
+  become_user: root
+  become_method: sudo
 
   roles:
     - docker
     - docker-config
-#    - docker-compose
+    - docker-compose
