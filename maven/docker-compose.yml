@@ -1,0 +1,14 @@
+version: '2'
+services:
+  maven:
+    image: maven:3.5-jdk-8
+    volumes:
+      - ${REPO_PATH}:/root/.m2/repository
+      - ${SRC_PATH}:/usr/src
+      - ${OUTPUT_PATH}:/usr/src/target
+    working_dir: /usr/src
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb

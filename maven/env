@@ -1,0 +1,3 @@
+export REPO_PATH=${REPO_PATH:-$(pwd)/repo}
+export SRC_PATH=${SRC_PATH:-$(pwd)/src}
+export OUTPUT_PATH=${OUTPUT_PATH:-$(pwd)/output}
