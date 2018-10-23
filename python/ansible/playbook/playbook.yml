@@ -1,6 +1,0 @@
----
-- name: test
-  hosts: testgfs
-  
-  tasks:
-  - command: ls -al
