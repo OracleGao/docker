@@ -1,0 +1,6 @@
+---
+- name: copy docker-compose
+  copy:
+    src: /usr/local/bin/docker-compose
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
