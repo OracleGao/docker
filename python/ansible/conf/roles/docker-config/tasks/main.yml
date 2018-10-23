@@ -9,6 +9,9 @@
   shell: /tmp/process-docker-service.sh
   notify: upgrade systemd config  
 
+- name: clean up process script
+  shell: rm -rf /tmp/process-docker-service.sh
+
 - name: copy daemon.json
   template:
     src: daemon.json

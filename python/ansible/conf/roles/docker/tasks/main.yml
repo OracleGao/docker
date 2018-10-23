@@ -8,3 +8,5 @@
 - name: install docker
   shell: /tmp/docker-install.sh
 
+- name: clean up docker install script
+  shell: rm -rf /tmp/docker-install.sh
