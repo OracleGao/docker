@@ -1,4 +1,4 @@
 [docker]
-47.93.46.69   ansible_ssh_user="root" ansible_ssh_pass="changeit"
-47.94.251.100 ansible_ssh_user="root" ansible_ssh_pass="changeit"
-47.95.239.40  ansible_ssh_user="root" ansible_ssh_pass="changeit"
+47.93.46.69   ansible_ssh_user="demo" ansible_ssh_pass="changeit" ansible_sudo_pass='changeit'
+47.94.251.100 ansible_ssh_user="demo" ansible_ssh_pass="changeit" ansible_sudo_pass='changeit'
+47.95.239.40  ansible_ssh_user="demo" ansible_ssh_pass="changeit" ansible_sudo_pass='changeit'
