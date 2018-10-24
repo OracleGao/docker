@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  php-laravel:
+    restart: always
+    image: ${LARAVEL_IMAGE}
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${WWW_PATH}:/var/www/html
+    working_dir: /var/www/html
+    command: php artisan consumer:kafka
+    user: root
+    logging:
+       options:
+         max-size: 10mb
+
+  composer:
+    image: php-laravel:1.0
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${SRC_PATH}:/var/www/html
+    working_dir: /var/www/html/
+    entrypoint:
+      - composer
+      - install
+
