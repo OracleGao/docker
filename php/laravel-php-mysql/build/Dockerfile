@@ -32,7 +32,7 @@ RUN set -ex \
 RUN set -ex \
     && php -r"copy('https://getcomposer.org/installer','composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/bin --filename=composer \
-    && composer config -g repo.packagist composer https://packagist.phpcomposer.com \
+    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 RUN set -ex \ 
     && apt-get remove --purge --auto-remove -y \
