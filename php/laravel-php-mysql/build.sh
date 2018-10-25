@@ -3,5 +3,5 @@ cd ${0%/*}
 
 source ./env
 
-docker build --no-cache -t ${LARAVEL_IMAGE} ./build/.
+docker build -t ${LARAVEL_IMAGE} ./build/.
 

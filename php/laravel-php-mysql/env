@@ -3,7 +3,7 @@
 export SRC_PATH=/opt/cas-mbc-media-processer
 export WWW_PATH=${SRC_PATH}
 
-export LARAVEL_IMAGE_NAME=${LARAVEL_IMAGE_NAME:-laravel-web-service}
+export LARAVEL_IMAGE_NAME=${LARAVEL_IMAGE_NAME:-laravel-base}
 export LARAVEL_IMAGE_VERSION=${LARAVEL_IMAGE_VERSION:-1.0.0}
 
 export LARAVEL_IMAGE=${LARAVEL_IMAGE_NAME}:${LARAVEL_IMAGE_VERSION}
