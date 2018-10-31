@@ -1,0 +1,13 @@
+version: '2'
+services:
+  kafka-manager:
+    restart: always
+    image: sheepkiller/kafka-manager:latest
+    ports:
+      - ${PORT}:9000
+    environment:
+      TZ: Asia/Shanghai
+      ZK_HOSTS: 192.168.8.141:2181
+    logging:
+      options:
+        max-size: 10mb

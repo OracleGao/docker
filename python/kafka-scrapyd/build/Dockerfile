@@ -10,7 +10,8 @@ RUN set -ex \
     libxml2 \
     openssl \
     libxslt \
-    tiff
+    tiff \
+    curl
 
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \

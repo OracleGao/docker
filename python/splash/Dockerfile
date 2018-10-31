@@ -1,4 +1,6 @@
 FROM ubuntu:16.04
+MAINTAINER oraclegao@126.com
+
 ENV DEBIAN_FRONTEND noninteractive
 
 # XXX: this needs to be updated if Qt is updated in provision.sh

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ./env
+
+if [ $# -lt 2 ]; then
+  echo "Usage $0 <hosts> <command>"
+  exit 1
+fi
+
+hosts=$1
+shift
+
+docker-compose run --rm ansible ansible ${hosts} -s -a "$*"
