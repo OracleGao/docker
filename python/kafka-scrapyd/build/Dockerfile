@@ -39,7 +39,9 @@ RUN set -ex \
                    Pillow \
                    request \
                    requests \
-                   bs4
+                   bs4 \
+                   redis
+
 RUN set -ex \
     && mkdir -p /usr/src \
     && cd /usr/src \
