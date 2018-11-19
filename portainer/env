@@ -1,0 +1,2 @@
+export PORT=${PORT:-9001}
+export DATA_PATH=${DATA_PATH:-$(pwd)/data}

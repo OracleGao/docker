@@ -1,0 +1,11 @@
+version: '3'
+services:
+  netdata:
+    image: portainer/portainer:latest
+    restart: always
+    hostname: portainer
+    ports:
+      - ${PORT}:9000
+    volumes:
+      - ${DATA_PATH}:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
