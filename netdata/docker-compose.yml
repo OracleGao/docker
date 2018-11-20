@@ -1,6 +1,7 @@
 version: '3'
 services:
   netdata:
+    restart: always
     image: netdata/netdata:latest-amd64
     hostname: netdata
     ports:
