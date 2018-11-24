@@ -11,7 +11,14 @@ RUN set -ex \
        git \
        unzip \
        zip \
-       zlib1g-dev
+       zlib1g-dev \
+       libfreetype6 \ 
+       libfreetype6-dev \
+       libjpeg62-turbo \
+       libjpeg62-turbo-dev \
+       libmcrypt-dev \
+       libpng-dev \
+       libpng16-16
 
 RUN set -ex \
     && docker-php-source extract \
@@ -27,6 +34,12 @@ RUN set -ex \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip \
     && docker-php-ext-enable zip \
+    && docker-php-ext-configure iconv \
+    && docker-php-ext-install iconv \
+    && docker-php-ext-enable iconv \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd \
+    && docker-php-ext-enable gd \
     && docker-php-source delete
 
 RUN set -ex \
