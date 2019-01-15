@@ -73,3 +73,42 @@ export DOCKER_OPTS=" -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock"
 ``` shell
 service docker restart
 ```
+
+## Protect the Docker daemon socket(docker 待鉴权和加密的远程访问)
+- 通过配置证书，访问远程的docker service
+### 服务端配置
+1. 生成ca-key.pem和ca.pem
+- 执行下列指令并输入密码，生成ca-key.pem
+``` shell
+openssl genrsa -aes256 -out ca-key.pem 4096
+```
+``` txt
+Generating RSA private key, 4096 bit long modulus
+...........................................................................................................................++
+................++
+e is 65537 (0x10001)
+Enter pass phrase for ca-key.pem:
+Verifying - Enter pass phrase for ca-key.pem:
+```
+2. 使用生成的ca-key.pem,执行下列指令并输入密码，生成ca.pem
+- 对于绑定ip或域名需要在"Common Name (eg, your name or your server's hostname) []:",当不设置域名是，使用docker使用--tls,curl使用-k
+``` shell
+openssl req -new -x509 -days 365 -key ca-key.pem -sha256 -out ca.pem
+```
+``` txt
+Enter pass phrase for ca-key.pem:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:
+State or Province Name (full name) []:
+Locality Name (eg, city) [Default City]:
+Organization Name (eg, company) [Default Company Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (eg, your name or your server's hostname) []:
+Email Address []:
+```
