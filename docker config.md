@@ -78,9 +78,9 @@ service docker restart
 - 通过配置证书，访问远程的docker service
 
 ### 环境准备
-- 远程机器 47.93.199.97,已经正确安装docker并可以使用
+- 远程机器47.93.199.97,已经正确安装docker并可以使用
 - 本地机器已经安装docker并可以正常使用
-- 
+- 通过本地docker远程访问并管理47.93.199.97的docker daemon service
 
 ### 服务端配置
 1. 将准备好的证书"ca.pem server-cert.pem server-key.pem"放在~/.docker目录下
@@ -158,10 +158,29 @@ curl -k https://127.0.0.1:2376/images/json --cert ~/.docker/cert.pem --key ~/.do
 1. 将ca.pem,cert.pem,key.pem拷贝的远程docker client机器的~/.docker下
 2. 远程访问docker服务
 ``` shell
-docker --tls -H=192.168.10.:2376 version
+docker --tls -H 47.93.199.97:2376 version
+```
+``` txt
+Client:
+ Version:      17.09.0-ce
+ API version:  1.32
+ Go version:   go1.8.3
+ Git commit:   afdb6d4
+ Built:        Tue Sep 26 22:41:23 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.09.0-ce
+ API version:  1.32 (minimum version 1.12)
+ Go version:   go1.8.3
+ Git commit:   afdb6d4
+ Built:        Tue Sep 26 22:42:49 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
 ```
 
 ### 秘钥和证书生成
+- 生成服务端和客户端所有需要的秘钥和证书
 1. 生成ca-key.pem和ca.pem
 - 执输入密码，生成ca-key.pem
 ``` shell
