@@ -314,3 +314,6 @@ If you'd like to turn off curl's verification of the certificate, use
  the -k (or --insecure) option.
 ```
 - 使用curl -k 跳过证书验证
+
+### Refs
+- [Protect the Docker daemon socket](https://docs.docker.com/engine/security/https/)
