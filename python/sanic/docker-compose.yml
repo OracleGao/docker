@@ -1,0 +1,17 @@
+version: '3'
+services:
+  scrapyd:
+    image: python-sanic:1.0
+    restart: always
+    ports:
+      - ${SANIC_PORT}:8000
+    volumes:
+      - ${SANIC_SRC_PATH}:/usr/src
+    environment:
+      TZ: Asia/Shanghai
+    working_dir: /usr/src
+    command: python main.py
+    logging:
+      options:
+        max-size: 10mb
+

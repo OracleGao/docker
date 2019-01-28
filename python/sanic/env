@@ -1,0 +1,2 @@
+export SANIC_PORT=${SANIC_PORT:-8000}
+export SANIC_SRC_PATH=${SANIC_SRC_PATH:-$(pwd)/src}
