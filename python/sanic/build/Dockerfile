@@ -19,8 +19,8 @@ RUN pip install --upgrade pip
 
 RUN pip3 install sanic 
 
-COPY requirement.txt .
-RUN pip3 install -r requirement.txt
-RUN rm -rf requirement.txt
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+RUN rm -rf requirements.txt
 
 EXPOSE 8000
