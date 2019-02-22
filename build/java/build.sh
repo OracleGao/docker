@@ -17,5 +17,5 @@ rm -rf runnable.jar
 rm -rf .dc-build
 
 if [ "$1" == "-d" ]; then
-  docker run --rm ${SERVICE_NAME}:${SERVICE_VERSION}
+  docker run --rm -e JAVA_OPTS="-Xms256m -Xmx256m -Xss1024K -XX:MetaspaceSize=64m -XX:MaxMetaspaceSize=64m" ${SERVICE_NAME}:${SERVICE_VERSION}
 fi

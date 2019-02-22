@@ -5,9 +5,9 @@ RUN mkdir -p /opt/jar
 
 WORKDIR /opt/jar
 
-
 COPY runnable.jar runnable.jar
+COPY entrypoint.sh entrypoint.sh
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "runnable.jar"]
+CMD ["/opt/jar/entrypoint.sh"]
