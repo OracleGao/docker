@@ -1,0 +1,6 @@
+export DOCKER_IMAGE_BUILD=php-fpm-laravel:1.0
+
+#export DOCKER_REGISTRY=${DOCKER_REGISTRY:-cw-registry:5000}
+export CURRENT_PATH=$(pwd)
+export SERVICE_NAME=${CURRENT_PATH##*/}
+#export IMAGE=${DOCKER_REGISTRY}/${SERVICE_NAME}:${SERVICE_VERSION}

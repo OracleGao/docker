@@ -1,0 +1,7 @@
+FROM php-fpm-laravel:1.0
+MAINTAINER oraclegao@126.com
+
+WORKDIR /usr/src
+
+COPY . /usr/src/
+
