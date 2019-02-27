@@ -1,5 +1,4 @@
 # Docker Registry Deployment
-## Http
 ## 环境准备
 - 安装docker
 - 安装docker-composer
@@ -7,6 +6,14 @@
 ``` shell
 docker pull registry
 ```
+
+## Http
+### config.yml配置文件
+- (完整的配置文件示例)[https://www.myfreax.com/deploying-a-registry-server/]
+``` yml
+
+```
+
 - 编辑docker-compose.yml文件, 其中环境变量需要自行替换
 ``` yml
 version: '2'
