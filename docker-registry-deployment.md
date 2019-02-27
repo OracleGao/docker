@@ -181,8 +181,57 @@ docker tag hello-world:latest 192.168.10.2:5000/hello-world:latest
 docker push 192.168.10.2:5000/hello-world:latest
 curl -k -X GET https://115.29.76.68:5000/v2/_catalog
 ```
-## Https(TLS) with Client Cert
 
+## Https(TLS) with Htpasswd Authentication
+- 生成登录私有镜像库的用户名密码文件【必须加"-B"参数，官方要求强制使用bcrypt加密方式】(用户名/密码： admin/changeit)
+``` 
+htpasswd -Bcb passtest admin changeit
+```
+- 将生成的密码文件与证书文件放在同一文件夹下
+- 修改config.yml 增加“auth.htpasswd.realm”（值随便填写）和“auth.htpasswd.path”(密码文件位置)
+```
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /etc/docker/registry/cert/passfile
+http:
+  addr: :5000
+  secret: dockerregistry
+  tls:
+    certificate: /etc/docker/registry/cert/dr-crt.pem
+    key: /etc/docker/registry/cert/dr-key.pem
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+```
+- 其它同https的配置方式
+### 启动验证
+- 重启镜像库服务
+- 登录镜像库,输入用户名/密码：admin/changeit
+``` shell
+docker login https://192.168.10.2:5000
+```
+- 登出镜像库
+``` shell
+docker logout
+```
+## Https(TLS) with Client Cert
+- 即将更新...
 ## 完整代码示例
 - [完整代码示例](https://github.com/OracleGao/docker/tree/master/registry)中执行start.sh启动服务
 
