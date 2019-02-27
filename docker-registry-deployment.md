@@ -9,11 +9,30 @@ docker pull registry
 
 ## Http
 ### config.yml配置文件
-- (完整的配置文件示例)[https://www.myfreax.com/deploying-a-registry-server/]
+- (完整的配置文件示例)[https://github.com/OracleGao/docker/blob/master/registry/conf/config.yml.template]
+- 默认配置
 ``` yml
-
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
 ```
-
 - 编辑docker-compose.yml文件, 其中环境变量需要自行替换
 ``` yml
 version: '2'
