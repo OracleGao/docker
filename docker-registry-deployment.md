@@ -106,7 +106,7 @@ curl -X GET http://115.29.76.68:5000/v2/_catalog
 ``` shell
 openssl genrsa -out dr-key.pem 4096
 ```
-- 生成证书文件dr-crt.pem, “Common Name (e.g. server FQDN or YOUR name) []:”为空或私有证书，则需要在镜像库的客户端配置允许不安全的私有库，同[配置dockerd参数，允许非https的方式访问镜像库](#A1)
+- 生成证书文件dr-crt.pem, “Common Name (e.g. server FQDN or YOUR name) []:”为空或私有证书，则需要在镜像库的客户端配置允许不安全的私有库:配置方法同[配置dockerd参数，允许非https的方式访问镜像库]的配置(#A1)
 ``` shell
 openssl req -new -x509 -days 365 -key dr-key.pem -sha256 -out dr-crt.pem
 
