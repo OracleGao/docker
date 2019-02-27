@@ -13,7 +13,7 @@ docker pull registry
 
 ## Http
 ### config.yml配置文件
-- (完整的配置文件示例)[https://github.com/OracleGao/docker/blob/master/registry/conf/config.yml.template]
+- [完整的配置文件示例](https://github.com/OracleGao/docker/blob/master/registry/conf/config.yml.template)
 - 默认配置
 ``` yml
 version: 0.1
