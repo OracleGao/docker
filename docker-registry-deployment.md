@@ -89,7 +89,78 @@ service docker restart
 ```
 
 ## Https(TLS)
+### 生成秘钥证书
+- 生成秘钥文件dr-key.pem
+``` shell
+openssl genrsa -out dr-key.pem 4096
+```
+- 生成证书文件dr-crt.pem, “Common Name (e.g. server FQDN or YOUR name) []:”为空或私有证书，则需要在镜像库的客户端配置允许不安全的私有库，同[配置dockerd参数，允许非https的方式访问镜像库](#A1)
+``` shell
+openssl req -new -x509 -days 365 -key dr-key.pem -sha256 -out dr-crt.pem
 
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+
+```
+- docker-compose.yml中增加证书映射“- ${CERT_PATH}:/etc/docker/registry/cert”
+```
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: registry:latest
+    ports:
+      - ${PORT}:5000
+    volumes:
+      - ${REGISTRY_PATH}:/var/lib/registry
+      - ${CONFIG_FILE}:/etc/docker/registry/config.yml
+      - ${CERT_PATH}:/etc/docker/registry/cert
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
+```
+- config.yml中增加证书配置“tls.certificate”和“tls.key”
+``` yml
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  secret: clouderworkdockerregistry
+  tls:
+    certificate: /etc/docker/registry/cert/dr-crt.pem
+    key: /etc/docker/registry/cert/dr-key.pem
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+```
+- 重启docker镜像库服务
 ## Https(TLS) with Client Cert
 
 ## 完整代码示例
