@@ -8,6 +8,7 @@ services:
     volumes:
       - ${REGISTRY_PATH}:/var/lib/registry
       - ${CONFIG_FILE}:/etc/docker/registry/config.yml
+      - ${CERT_PATH}:/etc/docker/registry/cert
     environment:
       TZ: Asia/Shanghai
     logging:

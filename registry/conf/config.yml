@@ -9,8 +9,16 @@ storage:
     blobdescriptor: inmemory
   filesystem:
     rootdirectory: /var/lib/registry
+auth:
+  htpasswd:
+    realm: clouderwork-realm
+    path: /etc/docker/registry/cert/passfile
 http:
   addr: :5000
+  secret: clouderworkdockerregistry
+  tls:
+    certificate: /etc/docker/registry/cert/dr-crt.pem
+    key: /etc/docker/registry/cert/dr-key.pem 
   headers:
     X-Content-Type-Options: [nosniff]
 health:
