@@ -28,8 +28,15 @@ services:
 ### 配置dockerd参数，允许非https的方式访问镜像库
 - 以下三种方式任选其一(有些环境下，不同版本的操作系统，不同版本的docker服务，可能某一种会生效，自行尝试)
 #### /etc/docker/daemon.json【推荐（linux）】
+- insecure-registries数组中追加${REGISTRY_HOST}:${REGISTRY_HOST}
 ``` json
-
+{
+...,
+    "insecure-registries": [
+        "192.168.10.2:5000"
+    ],
+...
+}
 ```
 - 重启docker服务
 ``` shell
@@ -45,7 +52,6 @@ ExecStart=/usr/bin/dockerd ... --insecure-registry 192.168.10.2:5000
 systemctl daemon-reload
 service docker restart
 ```
-
 #### /etc/default/docker
 - DOKCER_OPT 行尾追加 --insecure-registry ${REGISTRY_HOST}:${REGISTRY_HOST}
 ``` properties
