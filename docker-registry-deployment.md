@@ -188,9 +188,9 @@ curl -k -X GET https://115.29.76.68:5000/v2/_catalog
 ``` 
 htpasswd -Bcb passtest admin changeit
 ```
-  - 关于htpasswd,参考[Apache htpasswd file](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
-  - registry:latest 镜像中自带了htpasswd指令，故可以使用以下指令创建密码文件
-  ``` shell
+    - 关于htpasswd,参考[Apache htpasswd file](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
+    - registry:latest 镜像中自带了htpasswd指令，故可以使用以下指令创建密码文件
+  ``` bash
   docker run --rm -it --entrypoint htpasswd registry:latest -Bbn admin changeit > passfile
   ```
 - 将生成的密码文件与证书文件放在同一文件夹下
