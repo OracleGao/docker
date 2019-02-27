@@ -71,7 +71,8 @@ service docker restart
 
 ## FAQs
 ### Get https://192.168.10.2/v1/_ping: x509: cannot validate certificate for 192.168.10.2 because it doesn't contain any IP SANs
-- 参考[配置dockerd参数，允许非https的方式访问镜像库](#配置dockerd参数，允许非https的方式访问镜像库)
+- 参考[配置dockerd参数，允许非https的方式访问镜像库](# 配置dockerd参数，允许非https的方式访问镜像库)
+
 ## Refs
 - [docker hub registry 官方镜像库](https://hub.docker.com/_/registry)
 - [centos7 Docker私有仓库搭建及删除镜像](https://www.cnblogs.com/Tempted/p/7768694.html)
