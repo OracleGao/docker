@@ -25,10 +25,14 @@ services:
       options:
         max-size: 10mb
 ```
-- [代码示例](https://github.com/OracleGao/docker/tree/master/registry)
+- 配置dockerd参数，允许非https的方式访问镜像库
+
 ## Https(TLS)
 
 ## Https(TLS) with Client Cert
+
+## 完整代码示例
+- [完整代码示例](https://github.com/OracleGao/docker/tree/master/registry)中执行start.sh启动服务
 
 ## Refs
 - [docker hub registry 官方镜像库](https://hub.docker.com/_/registry)
