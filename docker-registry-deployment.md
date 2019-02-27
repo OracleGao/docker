@@ -128,7 +128,7 @@ Email Address []:
 ```
 ### 修改配置文件
 - docker-compose.yml中增加证书映射“- ${CERT_PATH}:/etc/docker/registry/cert”
-```
+``` yml
 version: '2'
 services:
   nginx:
