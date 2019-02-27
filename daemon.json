@@ -1,0 +1,14 @@
+{
+    "registry-mirrors": [
+        "https://kqkzqus2.mirror.aliyuncs.com"
+    ],
+
+    "insecure-registries": [
+        "mbc-registry:5000"
+    ],
+
+    "hosts":[
+        "fd://",
+        "tcp://0.0.0.0:2375"
+    ]
+}
