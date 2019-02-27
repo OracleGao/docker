@@ -1,6 +1,31 @@
 # Docker Registry Deployment
 ## Http
-
+## 环境准备
+- 安装docker
+- 安装docker-composer
+- 从[官方镜像库](https://hub.docker.com/_/registry)拉取镜像库docker镜像
+``` shell
+docker pull registry
+```
+- 编辑docker-compose.yml文件, 其中环境变量需要自行替换
+``` yml
+version: '2'
+services:
+  nginx:
+    restart: always
+    image: registry:latest
+    ports:
+      - ${PORT}:5000
+    volumes:
+      - ${REGISTRY_PATH}:/var/lib/registry
+      - ${CONFIG_FILE}:/etc/docker/registry/config.yml
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
+```
+- 
 ## Https(TLS)
 
 ## Https(TLS) with Client Cert
