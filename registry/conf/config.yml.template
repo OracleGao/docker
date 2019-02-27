@@ -1,5 +1,7 @@
-version: 0.1  
-log: ## 日志选项  
+version: 0.1
+log:
+  accesslog:
+    disabled: true
   level: debug
   formatter: text
   fields:
@@ -11,7 +13,7 @@ log: ## 日志选项
       levels:
         - panic
       options:
-        smtp:## 邮件通知配置
+        smtp:
           addr: mail.example.com:25
           username: mailuser
           password: password
@@ -19,12 +21,74 @@ log: ## 日志选项
         from: sender@example.com
         to:
           - errors@example.com
-loglevel: debug # 即将弃用: 使用Log替代  
-storage:##存储选项，  
-  filesystem: ## 本地文件系统，也可以是云分布式存储，比如微软Azure，亚马逊S3，swift，OSS
+loglevel: debug # deprecated: use "log"
+storage:
+  filesystem:
     rootdirectory: /var/lib/registry
-    maxthreads: 100 ##最大线程数
-auth: #用户验证  
+    maxthreads: 100
+  azure:
+    accountname: accountname
+    accountkey: base64encodedaccountkey
+    container: containername
+  gcs:
+    bucket: bucketname
+    keyfile: /path/to/keyfile
+    rootdirectory: /gcs/object/name/prefix
+    chunksize: 5242880
+  s3:
+    accesskey: awsaccesskey
+    secretkey: awssecretkey
+    region: us-west-1
+    regionendpoint: http://myobjects.local
+    bucket: bucketname
+    encrypt: true
+    keyid: mykeyid
+    secure: true
+    v4auth: true
+    chunksize: 5242880
+    multipartcopychunksize: 33554432
+    multipartcopymaxconcurrency: 100
+    multipartcopythresholdsize: 33554432
+    rootdirectory: /s3/object/name/prefix
+  swift:
+    username: username
+    password: password
+    authurl: https://storage.myprovider.com/auth/v1.0 or https://storage.myprovider.com/v2.0 or https://storage.myprovider.com/v3/auth
+    tenant: tenantname
+    tenantid: tenantid
+    domain: domain name for Openstack Identity v3 API
+    domainid: domain id for Openstack Identity v3 API
+    insecureskipverify: true
+    region: fr
+    container: containername
+    rootdirectory: /swift/object/name/prefix
+  oss:
+    accesskeyid: accesskeyid
+    accesskeysecret: accesskeysecret
+    region: OSS region name
+    endpoint: optional endpoints
+    internal: optional internal endpoint
+    bucket: OSS bucket
+    encrypt: optional data encryption setting
+    secure: optional ssl setting
+    chunksize: optional size valye
+    rootdirectory: optional root directory
+  inmemory:  # This driver takes no parameters
+  delete:
+    enabled: false
+  redirect:
+    disable: false
+  cache:
+    blobdescriptor: redis
+  maintenance:
+    uploadpurging:
+      enabled: true
+      age: 168h
+      interval: 24h
+      dryrun: false
+    readonly:
+      enabled: false
+auth:
   silly:
     realm: silly-realm
     service: silly-service
@@ -36,19 +100,36 @@ auth: #用户验证
   htpasswd:
     realm: basic-realm
     path: /path/to/htpasswd
-middleware:##中间件类型有registry，repository，storage三种，每种中间件可以像下面的方式使用  
+middleware:
   registry:
     - name: ARegistryMiddleware
       options:
         foo: bar
+  repository:
+    - name: ARepositoryMiddleware
+      options:
+        foo: bar
   storage:
-    - name: ARegistryMiddleware
-reporting:##监控，可以使用一些在线的监控工具包括bugsnag，newrelic  
+    - name: cloudfront
+      options:
+        baseurl: https://my.cloudfronted.domain.com/
+        privatekey: /path/to/pem
+        keypairid: cloudfrontkeypairid
+        duration: 3000s
+  storage:
+    - name: redirect
+      options:
+        baseurl: https://example.com/
+reporting:
+  bugsnag:
+    apikey: bugsnagapikey
+    releasestage: bugsnagreleasestage
+    endpoint: bugsnagendpoint
   newrelic:
     licensekey: newreliclicensekey
     name: newrelicname
     verbose: true
-http:## 由Nginx提供的HTTP服务，可以把它理解成配置Nginx  
+http:
   addr: localhost:5000
   prefix: /my/nested/registry/
   host: https://myregistryaddress.org:5000
@@ -67,7 +148,9 @@ http:## 由Nginx提供的HTTP服务，可以把它理解成配置Nginx
     addr: localhost:5001
   headers:
     X-Content-Type-Options: [nosniff]
-notifications:## 事件通知，当Registry服务器发生拉取，推送等时发送事件到endpoints  
+  http2:
+    disabled: false
+notifications:
   endpoints:
     - name: alistener
       disabled: false
@@ -76,7 +159,9 @@ notifications:## 事件通知，当Registry服务器发生拉取，推送等时�
       timeout: 500
       threshold: 5
       backoff: 1000
-redis:##这个用过的都懂  
+      ignoredmediatypes:
+        - application/octet-stream
+redis:
   addr: localhost:6379
   password: asecret
   db: 0
@@ -87,7 +172,7 @@ redis:##这个用过的都懂
     maxidle: 16
     maxactive: 64
     idletimeout: 300s
-health:## 健康检查包括存储驱动，file，http服务，tcp的可用性检查  
+health:
   storagedriver:
     enabled: true
     interval: 10s
@@ -108,10 +193,18 @@ health:## 健康检查包括存储驱动，file，http服务，tcp的可用性�
       timeout: 3s
       interval: 10s
       threshold: 3
-proxy:## 可以镜像Docker Hub的仓库  
+proxy:
   remoteurl: https://registry-1.docker.io
   username: [username]
   password: [password]
-compatibility:  
+compatibility:
   schema1:
     signingkeyfile: /etc/registry/key.json
+validation:
+  enabled: true
+  manifests:
+    urls:
+      allow:
+        - ^https?://([^/]+\.)*example\.com/
+      deny:
+        - ^https?://www\.example\.com/
