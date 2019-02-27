@@ -1,0 +1,117 @@
+version: 0.1  
+log: ## 日志选项  
+  level: debug
+  formatter: text
+  fields:
+    service: registry
+    environment: staging
+  hooks:
+    - type: mail
+      disabled: true
+      levels:
+        - panic
+      options:
+        smtp:## 邮件通知配置
+          addr: mail.example.com:25
+          username: mailuser
+          password: password
+          insecure: true
+        from: sender@example.com
+        to:
+          - errors@example.com
+loglevel: debug # 即将弃用: 使用Log替代  
+storage:##存储选项，  
+  filesystem: ## 本地文件系统，也可以是云分布式存储，比如微软Azure，亚马逊S3，swift，OSS
+    rootdirectory: /var/lib/registry
+    maxthreads: 100 ##最大线程数
+auth: #用户验证  
+  silly:
+    realm: silly-realm
+    service: silly-service
+  token:
+    realm: token-realm
+    service: token-service
+    issuer: registry-token-issuer
+    rootcertbundle: /root/certs/bundle
+  htpasswd:
+    realm: basic-realm
+    path: /path/to/htpasswd
+middleware:##中间件类型有registry，repository，storage三种，每种中间件可以像下面的方式使用  
+  registry:
+    - name: ARegistryMiddleware
+      options:
+        foo: bar
+  storage:
+    - name: ARegistryMiddleware
+reporting:##监控，可以使用一些在线的监控工具包括bugsnag，newrelic  
+  newrelic:
+    licensekey: newreliclicensekey
+    name: newrelicname
+    verbose: true
+http:## 由Nginx提供的HTTP服务，可以把它理解成配置Nginx  
+  addr: localhost:5000
+  prefix: /my/nested/registry/
+  host: https://myregistryaddress.org:5000
+  secret: asecretforlocaldevelopment
+  relativeurls: false
+  tls:
+    certificate: /path/to/x509/public
+    key: /path/to/x509/private
+    clientcas:
+      - /path/to/ca.pem
+      - /path/to/another/ca.pem
+    letsencrypt:
+      cachefile: /path/to/cache-file
+      email: emailused@letsencrypt.com
+  debug:
+    addr: localhost:5001
+  headers:
+    X-Content-Type-Options: [nosniff]
+notifications:## 事件通知，当Registry服务器发生拉取，推送等时发送事件到endpoints  
+  endpoints:
+    - name: alistener
+      disabled: false
+      url: https://my.listener.com/event
+      headers: <http.Header>
+      timeout: 500
+      threshold: 5
+      backoff: 1000
+redis:##这个用过的都懂  
+  addr: localhost:6379
+  password: asecret
+  db: 0
+  dialtimeout: 10ms
+  readtimeout: 10ms
+  writetimeout: 10ms
+  pool:
+    maxidle: 16
+    maxactive: 64
+    idletimeout: 300s
+health:## 健康检查包括存储驱动，file，http服务，tcp的可用性检查  
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+  file:
+    - file: /path/to/checked/file
+      interval: 10s
+  http:
+    - uri: http://server.to.check/must/return/200
+      headers:
+        Authorization: [Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==]
+      statuscode: 200
+      timeout: 3s
+      interval: 10s
+      threshold: 3
+  tcp:
+    - addr: redis-server.domain.com:6379
+      timeout: 3s
+      interval: 10s
+      threshold: 3
+proxy:## 可以镜像Docker Hub的仓库  
+  remoteurl: https://registry-1.docker.io
+  username: [username]
+  password: [password]
+compatibility:  
+  schema1:
+    signingkeyfile: /etc/registry/key.json
