@@ -184,16 +184,12 @@ curl -k -X GET https://115.29.76.68:5000/v2/_catalog
 
 ## Https(TLS) with Htpasswd Authentication
 - https的基础上增加登录校验
-- 生成登录私有镜像库的用户名密码文件【必须加"-B"参数，官方要求强制使用bcrypt加密方式】(用户名/密码： admin/changeit)
-``` 
-htpasswd -Bcb passtest admin changeit
+- 生成登录私有镜像库的用户名密码文件passfile【必须加"-B"参数，官方要求强制使用bcrypt加密方式】(用户名/密码： admin/changeit)
+- 关于htpasswd,参考[Apache htpasswd file](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
+- registry:latest 镜像中自带了htpasswd指令，故可以使用以下指令创建密码文件
+``` sh
+docker run --rm -it --entrypoint htpasswd registry:latest -Bbn admin changeit > passfile
 ```
-
-  * 关于htpasswd,参考[Apache htpasswd file](https://httpd.apache.org/docs/2.4/programs/htpasswd.html)
-  * registry:latest 镜像中自带了htpasswd指令，故可以使用以下指令创建密码文件
-  ``` bash
-  docker run --rm -it --entrypoint htpasswd registry:latest -Bbn admin changeit > passfile
-  ```
 - 将生成的密码文件与证书文件放在同一文件夹下
 - 修改config.yml 增加“auth.htpasswd.realm”（值随便填写）和“auth.htpasswd.path”(密码文件位置)
 ```
