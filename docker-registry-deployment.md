@@ -1,4 +1,8 @@
 # Docker Registry Deployment
+## 前置知识
+- 了解docker命令行常用指令
+- 了解docker-compose配置和常用命令行指令
+
 ## 环境准备
 - 安装docker
 - 安装docker-composer
@@ -88,6 +92,14 @@ DOKCER_OPT=" --insecure-registry 192.168.10.2:5000"
 service docker restart
 ```
 
+#### 启动验证
+- 启动docker镜像库服务
+``` shell
+docker tag hello-world:latest 192.168.10.2:5000/hello-world:latest
+docker push 192.168.10.2:5000/hello-world:latest
+curl -X GET http://115.29.76.68:5000/v2/_catalog
+```
+
 ## Https(TLS)
 ### 生成秘钥证书
 - 生成秘钥文件dr-key.pem
@@ -114,6 +126,7 @@ Common Name (e.g. server FQDN or YOUR name) []:
 Email Address []:
 
 ```
+### 修改配置文件
 - docker-compose.yml中增加证书映射“- ${CERT_PATH}:/etc/docker/registry/cert”
 ```
 version: '2'
@@ -160,7 +173,14 @@ health:
     interval: 10s
     threshold: 3
 ```
-- 重启docker镜像库服务
+### 启动验证
+- 启动docker镜像库服务
+- 验证 curl命令加“-k”参数跳过证书验证
+``` shell
+docker tag hello-world:latest 192.168.10.2:5000/hello-world:latest
+docker push 192.168.10.2:5000/hello-world:latest
+curl -k -X GET https://115.29.76.68:5000/v2/_catalog
+```
 ## Https(TLS) with Client Cert
 
 ## 完整代码示例
