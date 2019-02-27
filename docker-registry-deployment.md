@@ -183,6 +183,7 @@ curl -k -X GET https://115.29.76.68:5000/v2/_catalog
 ```
 
 ## Https(TLS) with Htpasswd Authentication
+- https的基础上增加登录校验
 - 生成登录私有镜像库的用户名密码文件【必须加"-B"参数，官方要求强制使用bcrypt加密方式】(用户名/密码： admin/changeit)
 ``` 
 htpasswd -Bcb passtest admin changeit
