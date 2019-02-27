@@ -229,7 +229,7 @@ docker login https://192.168.10.2:5000
 ```
 - 登出镜像库
 ``` shell
-docker logout
+docker logout https://192.168.10.2:5000
 ```
 ## Https(TLS) with Client Cert
 - 即将更新...
