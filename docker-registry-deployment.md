@@ -1,9 +1,9 @@
 # Docker Registry Deployment
 ## Http
 
-## Https
+## Https(TLS)
 
-## Https with Client Cert
+## Https(TLS) with Client Cert
 
 ## Refs
 - [centos7 Docker私有仓库搭建及删除镜像](https://www.cnblogs.com/Tempted/p/7768694.html)
