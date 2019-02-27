@@ -25,7 +25,36 @@ services:
       options:
         max-size: 10mb
 ```
-- 配置dockerd参数，允许非https的方式访问镜像库
+### 配置dockerd参数，允许非https的方式访问镜像库
+- 以下三种方式任选其一(有些环境下，不同版本的操作系统，不同版本的docker服务，可能某一种会生效，自行尝试)
+#### /etc/docker/daemon.json【推荐（linux）】
+``` json
+
+```
+- 重启docker服务
+``` shell
+service docker restart
+```
+#### /lib/systemd/system/docker.service
+- ExecStart=/usr/bin/dockerd 行尾追加 --insecure-registry ${REGISTRY_HOST}:${REGISTRY_HOST}
+``` properteis
+ExecStart=/usr/bin/dockerd ... --insecure-registry 192.168.10.2:5000
+```
+- 重启docker服务
+``` shell
+systemctl daemon-reload
+service docker restart
+```
+
+#### /etc/default/docker
+- DOKCER_OPT 行尾追加 --insecure-registry ${REGISTRY_HOST}:${REGISTRY_HOST}
+``` properties
+DOKCER_OPT=" --insecure-registry 192.168.10.2:5000"
+```
+- 重启docker服务
+``` shell
+service docker restart
+```
 
 ## Https(TLS)
 
