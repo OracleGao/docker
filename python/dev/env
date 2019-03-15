@@ -1,0 +1,6 @@
+export CURRENT_PATH=$(pwd)
+export PROJECT_NAME=${CURRENT_PATH##*/}
+export SRC_PATH=${CURRENT_PATH}/src/${PROJECT_NAME}
+
+export BASE_IMAGE=python-dev:1.0
+
