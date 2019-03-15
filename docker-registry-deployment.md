@@ -13,7 +13,7 @@ docker pull registry
 
 ## Http
 ### config.yml配置文件
-- (完整的配置文件示例)[https://github.com/OracleGao/docker/blob/master/registry/conf/config.yml.template]
+- [完整的配置文件示例](https://github.com/OracleGao/docker/blob/master/registry/conf/config.yml.template)
 - 默认配置
 ``` yml
 version: 0.1
@@ -106,7 +106,7 @@ curl -X GET http://115.29.76.68:5000/v2/_catalog
 ``` shell
 openssl genrsa -out dr-key.pem 4096
 ```
-- 生成证书文件dr-crt.pem, “Common Name (e.g. server FQDN or YOUR name) []:”为空或私有证书，则需要在镜像库的客户端配置允许不安全的私有库，同[配置dockerd参数，允许非https的方式访问镜像库](#A1)
+- 生成证书文件dr-crt.pem, “Common Name (e.g. server FQDN or YOUR name) []:”为空或私有证书，则需要在镜像库的客户端配置允许不安全的私有库:配置方法同[配置dockerd参数，允许非https的方式访问镜像库](#A1)的配置
 ``` shell
 openssl req -new -x509 -days 365 -key dr-key.pem -sha256 -out dr-crt.pem
 
@@ -229,7 +229,7 @@ docker login https://192.168.10.2:5000
 ```
 - 登出镜像库
 ``` shell
-docker logout
+docker logout https://192.168.10.2:5000
 ```
 ## Https(TLS) with Client Cert
 - 即将更新...
