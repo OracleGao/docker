@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+if [ $# -lt 1 ];then
+  echo "Usage: $0 <topic> [kafka console producer parameters]"
+  echo "       -h, show kafka console producer parameters"
+  exit 1
+fi
+
+if [ "$1" == "-h" ]; then
+  docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-console-producer.sh
+  exit 0
+fi
+
+topic=$1
+shift
+
+docker run --rm -it ${DOCKER_IMAGE_KAFKA} kafka-console-producer.sh --broker-list ${HOST_NAME}:${KAFKA_PORT} --topic ${topic} $*
+

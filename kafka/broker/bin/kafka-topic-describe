@@ -3,7 +3,6 @@ cd ${0%/*}
 
 source ../env
 
-
 if [ $# -lt 1 ];then
   echo "Usage: $0 <topic>"
   exit 1

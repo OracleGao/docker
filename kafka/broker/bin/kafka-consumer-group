@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+if [ $# -lt 1 ];then
+  echo "Usage: $0 <group>"
+  echo "Default group: deploy-test"
+  exit 1
+fi
+
+docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-consumer-groups.sh --bootstrap-server ${HOST_NAME}:${KAFKA_PORT} --describe --group $1
+
