@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+if [ $# -lt 1 ];then
+  echo "Usage: $0 <topic> <group:deploy-test> [kafka console consumer parameters]"
+  echo "       -h, show kafka console consumer parameters"
+  exit 1
+fi
+
+if [ "$1" == "-h" ]; then
+  docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-console-consumer.sh --bootstrap-server ${HOST_NAME}:${KAFKA_PORT}
+  exit 0
+fi
+
+topic=$1
+shift
+group=${1:-deploy-test}
+shift
+
+docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-console-consumer.sh --bootstrap-server ${HOST_NAME}:${KAFKA_PORT} --topic ${topic} --group ${group} $*
+

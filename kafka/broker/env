@@ -1,0 +1,9 @@
+export CURRENT_PATH=$(pwd)
+export KAFKA_DATA_PATH=${CURRENT_PATH}/data/kafka
+export ZOOKEEPER_DATA_PATH=${CURRENT_PATH}/data/zookeeper
+export HOST_NAME=115.29.76.68
+export KAFKA_PORT=9092
+export ZOOKEEPER_PORT=2181
+
+export DOCKER_IMAGE_KAFKA=wurstmeister/kafka:2.11-2.0.0
+export DOCKER_IMAGE_ZOOKEEPER=zookeeper:3.4

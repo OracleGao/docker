@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+
+if [ $# -lt 1 ];then
+  echo "Usage: $0 <topic>"
+  exit 1
+fi
+
+docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-topics.sh --describe --topic $1 --zookeeper ${HOST_NAME}:${ZOOKEEPER_PORT}
+

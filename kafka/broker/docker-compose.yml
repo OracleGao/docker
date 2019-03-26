@@ -1,0 +1,46 @@
+version: '2'
+
+services:
+  kafka:
+    restart: always
+    image: ${DOCKER_IMAGE_KAFKA}
+    ports:
+      - ${KAFKA_PORT}:9092
+    volumes:
+      - ${KAFKA_DATA_PATH}/logs:/opt/kafka/logs
+      - ${KAFKA_DATA_PATH}/datalogs:/kafka
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      KAFKA_BROKER_ID: 115
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+      KAFKA_ADVERTISED_HOST_NAME: ${HOST_NAME}
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      TZ: Asia/Shanghai
+    networks:
+      - kafka-zookeeper
+    depends_on:
+      - zookeeper
+    logging:
+      options:
+        max-size: 10mb
+
+  zookeeper:
+    restart: always
+    image: ${DOCKER_IMAGE_ZOOKEEPER}
+    hostname: zookeeper
+    ports:
+      - ${ZOOKEEPER_PORT}:2181
+    user: root
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - kafka-zookeeper
+    volumes:
+      - ${ZOOKEEPER_DATA_PATH}/data:/data:rw
+      - ${ZOOKEEPER_DATA_PATH}/datalog:/datalog:rw
+    logging:
+      options:
+        max-size: 10mb
+
+networks:
+  kafka-zookeeper:

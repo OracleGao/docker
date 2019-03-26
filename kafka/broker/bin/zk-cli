@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+docker run -it --rm ${DOCKER_IMAGE_ZOOKEEPER} zkCli.sh -server ${HOST_NAME}:${ZOOKEEPER_PORT}
+

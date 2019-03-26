@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+cd ${0%/*}
+
+source ../env
+
+docker run --rm ${DOCKER_IMAGE_KAFKA} kafka-topics.sh --list --zookeeper ${HOST_NAME}:${ZOOKEEPER_PORT}
+
+
