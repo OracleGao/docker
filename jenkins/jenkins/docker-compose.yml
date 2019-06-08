@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  jenkins:
+    restart: always
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - "8230:8080"
+      - "50000:50000"
+    volumes:
+      - ${JENKINS_DATA_PATH}:/root
+      - /usr/bin/docker:/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      JENKINS_HOME: "/root"
+    logging:
+      options:
+        max-size: 10mb
