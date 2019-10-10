@@ -1,0 +1,5 @@
+export WP_PORT=${WP_PORT:-8899}
+export DB_PORT=${DB_PORT:-3306}
+export CURRENT_PATH=$(pwd)
+export CONFIG_PATH=${CURRENT_PATH}/conf
+export DEPLOY_HOME=${CURRENT_PATH}/deploy
