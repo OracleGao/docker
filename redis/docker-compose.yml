@@ -1,14 +1,25 @@
-version: '2'
+version: '3.2'
+
 services:
   redis:
-    restart: always
-    image: redis:4.0.9-alpine
+    image: ${REDIS_IMAGE:-redis:5-alpine}
     ports:
-      - ${PORT}:6379
+      - ${REDIS_PORT:-6379}:6379
     volumes:
-      - ${DATA_PATH}:/data
-    environment:
-      TZ: Asia/Shanghai
+      - ${REDIS_CONF_PATH:-./conf/redis}:/usr/local/etc/redis
+      - ${REDIS_DATA_PATH:-./data/redis}:/data
+    command: /usr/local/etc/redis/redis.conf
+    env_file:
+      - redis.env
+    logging:
+      options:
+        max-size: 10mb
+
+  redis-cli:
+    image: ${REDIS_IMAGE:-redis:5-alpine}
+    command: redis-cli -h redis
+    env_file:
+      - redis.env
     logging:
       options:
         max-size: 10mb

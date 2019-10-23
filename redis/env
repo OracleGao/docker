@@ -1,2 +1,0 @@
-export PORT=${REDIS_PORT:-6379}
-export DATA_PATH=${REDIS_DATA_PATH:-$(pwd)/data}
