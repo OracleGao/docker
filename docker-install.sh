@@ -13,8 +13,6 @@ set -ex
 
 export PATH=${PATH:-.}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
 
-cd ${0%/*}
-
 sys="unknow"
 
 if [ -f /usr/bin/apt-get ]; then
