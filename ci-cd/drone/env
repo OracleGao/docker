@@ -1,1 +1,2 @@
 export DATA_PATH=$(pwd)/data
+export DRONE_DATA_PATH=${DATA_PATH}/drone

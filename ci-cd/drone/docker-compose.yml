@@ -4,42 +4,49 @@ services:
   drone-server:
     image: drone/drone:latest
     ports:
-      - 8000:8000
-      - 9000
+      - 8000:80
+      - 8001:9000
     volumes:
-      - ${DATA_PATH}:/var/lib/drone/
+      - ${DRONE_DATA_PATH}:/data/
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - DRONE_OPEN=true
-      - DRONE_DEBUG=true
+      - TZ=Asia/Shanghai
+      - DRONE_GITHUB_CLIENT_ID=
+      - DRONE_GITHUB_CLIENT_SECRET=
+      - DRONE_SERVER_PROTO=http
       - DRONE_LOGS_DEBUG=true
       - DRONE_RPC_DEBUG=true
-      - DRONE_GOGS_DEBUG=true
       - DRONE_STASH_DEBUG=true
-      - TZ=Asia/Shanghai
-      - DRONE_GOGS=true
-      - DRONE_GOGS_SERVER=http://172.17.137.3:12306
       - DRONE_USER_CREATE=username:admin,admin:true
-      - DRONE_ADMIN=admin
-      - DRONE_SECRET=changit
-      - DRONE_RPC_SECRET=changeit
-      - DRONE_SERVER_HOST=drone.pplm.fun
-      - DRONE_SERVER_PORT=:8000
+      - DRONE_RPC_SECRET=bea26a2221fd8090ea38720fc445eca6
+      - DRONE_SERVER_HOST=120.77.176.165:8000
       - DRONE_GIT_ALWAYS_AUTH=false
-      - DRONE_GOGS_SKIP_VERIFY=false
-      - DRONE_PROVIDER=gogs
-        #   - DRONE_DATABASE_DRIVER=mysql
-        #   - DRONE_DATABASE_DATASOURCE=root:123456@tcp(ip:3306)/drone?parseTime=true
-
+ 
   drone-agent:
     image: drone/agent:latest
-    command: agent
+    ports:
+      - 8100:3000
     depends_on:
       - drone-server
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
+      - DRONE_RUNNER_NAME=da1
       - DRONE_DEBUG=true
-      - DRONE_SERVER=drone-server:9000
-      - DRONE_SECRET=changeit
+      - DRONE_RPC_HOST=drone-server
+      - DRONE_RPC_SECRET=bea26a2221fd8090ea38720fc445eca6
+      - DRONE_RPC_PROTO=http
+
+  drone-runner-ssh:
+    image: drone/drone-runner-ssh:linux-amd64
+    ports:
+      - 8200:3000
+    depends_on:
+      - drone-server
+    environment:
+      - DRONE_RUNNER_NAME=drs1
+      - DRONE_DEBUG=true
+      - DRONE_RPC_HOST=drone-server
+      - DRONE_RPC_SECRET=bea26a2221fd8090ea38720fc445eca6
+      - DRONE_RPC_PROTO=http
 
