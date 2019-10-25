@@ -1,6 +1,5 @@
-export DOCKER_IMAGE_BUILD=maven:3.6-alpine
+export DOCKER_IMAGE_BUILD=maven:3.6-jdk-11
 
-#export DOCKER_REGISTRY=${DOCKER_REGISTRY:-cw-registry:5000}
 export CURRENT_PATH=$(pwd)
 export SERVICE_NAME=${CURRENT_PATH##*/}
-#export IMAGE=${DOCKER_REGISTRY}/${SERVICE_NAME}:${SERVICE_VERSION}
+export SERVICE_VERSION=$(pwd)

@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 MAINTAINER gaojingzhe@yunzujia.com
 
 RUN mkdir -p /opt/jar
