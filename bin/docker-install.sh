@@ -9,7 +9,12 @@
 
 ##########################################
 
-set -ex
+
+docker info >> /dev/null
+if [ "$?" == "0" ]; then
+  docker -v
+  exit 1
+fi
 
 export PATH=${PATH:-.}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
 
