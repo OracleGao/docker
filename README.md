@@ -11,6 +11,18 @@ curl -L github.com/OracleGao/docker/raw/master/bin/docker-install.sh | bash
 curl -L github.com/OracleGao/docker/raw/master/bin/docker-compose-install.sh | bash
 ```
 
+## 安装docker服务
+```
+curl -L github.com/OracleGao/docker/raw/master/setup.sh | bash
+```
+```
+Usage bash <service> [setup path:~/docker-services]
+    service: docker,         install docker servicei, ignore setup path
+             docker-compose, install docker-compose, ignore setup path
+             nginx,          setup nginx service
+             redis,          setup redis service
+```
+
 ## Reference
 - [docker install](https://docs.docker.com/engine/installation/)
 - [docker-compose github](https://github.com/docker/compose)
