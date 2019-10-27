@@ -8,6 +8,7 @@ services:
     volumes:
       - ${NGINX_WWW_PATH:-./data/www}:/www/
       - ${NGINX_CONF_PATH:-./conf/nginx}:/etc/nginx/conf.d/
+      - ${NGINX_CERT_PATH:-./cert/nginx}:/etc/nginx/cert/
     working_dir: /www
     environment:
       TZ: Asia/Shanghai
