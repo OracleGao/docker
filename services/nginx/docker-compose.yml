@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - ${NGINX_PORT:-80}:80
+    volumes:
+      - ${NGINX_WWW_PATH:-./data/www}:/www/
+      - ${NGINX_CONF_PATH:-./conf/nginx}:/etc/nginx/conf.d/
+    working_dir: /www
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
