@@ -4,13 +4,19 @@
 ```
 curl -L github.com/OracleGao/docker/raw/master/bin/docker-install.sh | bash
 ```
-
+- 或者
+```
+curl -L github.com/OracleGao/docker/raw/master/setup.sh | bash -s docker
+```
 ## 安装docker-compose
 - 执行下面指令
 ```
 curl -L github.com/OracleGao/docker/raw/master/bin/docker-compose-install.sh | bash
 ```
-
+- 或者
+```
+curl -L github.com/OracleGao/docker/raw/master/setup.sh | bash -s docker-compose
+```
 ## 安装docker服务
 - 指令调用方式 服务名 安装路径（默认安装到~/docker-service下）
 ```
