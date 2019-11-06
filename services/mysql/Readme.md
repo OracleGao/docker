@@ -32,6 +32,9 @@ rm -rf ~/docker-services/mysql
 - MYSQL_IMAGE_TAG docker镜像tag，默认5.7，详见[mysql docker hub](https://hub.docker.com/_/mysql)
 - MYSQL_PORT 端口，默认3306
 - MYSQL_DATA_PATH 数据文件路径，默认./data/mysql
+- MYSQL_INIT_SQL_PATH 初始sql脚本路径，默认./conf/sql。该路径下的sql脚本在初次启动（数据文件./data/mysql不存在）时会自动执行。
+- MSQL_SCHEMA 初始化数据库，默认helloworld
+- MYSQL_ROOT_PASSWORD root密码，默认changeit
 
 ## docker环境安装
 - 详见[docker环境安装](https://github.com/OracleGao/docker/blob/master/README.md)
