@@ -14,7 +14,7 @@ services:
         max-size: 10mb
 
   redis-cli:
-    image: ${REDIS_IMAGE:-redis:5-alpine}
+    image: redis:${REDIS_IMAGE_TAG:-5-alpine}
     command: redis-cli -h redis
     logging:
       options:
