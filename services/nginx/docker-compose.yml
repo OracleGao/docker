@@ -11,8 +11,6 @@ services:
       - ${NGINX_CONF_PATH:-./conf/nginx}:/etc/nginx/conf.d/
       - ${NGINX_CERT_PATH:-./cert/nginx}:/etc/nginx/cert/
     working_dir: /www
-    environment:
-      TZ: Asia/Shanghai
     logging:
       options:
         max-size: 10mb
