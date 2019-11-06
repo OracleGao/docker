@@ -8,3 +8,6 @@ services:
     volumes:
       - ${PORTAINER_DATA_PATH:-./data/portainer}:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      options:
+        max-size: 10mb
