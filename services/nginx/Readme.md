@@ -1,4 +1,4 @@
-# Redis
+# Nginx
 
 ## 安装
 1. 默认安装到 ~/docker-services/nginx下
