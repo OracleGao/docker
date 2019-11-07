@@ -1,5 +1,0 @@
-export DOCKER_IMAGE_BUILD=maven:3.6-jdk-11
-
-export CURRENT_PATH=$(pwd)
-export SERVICE_NAME=${CURRENT_PATH##*/}
-export SERVICE_VERSION=$(pwd)
