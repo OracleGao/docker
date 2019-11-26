@@ -1,4 +1,6 @@
-# docker
+# docker @Drepeated
+- 迁移到gitee https://gitee.com/oraclegao/docker
+
 ## 安装docker
 - 执行下面指令（仅支持ubuntu和centos，请确保操作系统内核版本符合docker官方要求）
 ```
