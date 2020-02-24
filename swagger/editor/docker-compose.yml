@@ -1,0 +1,12 @@
+version: '2'
+services:
+  swagger-editor:
+    restart: always
+    image: swaggerapi/swagger-editor:latest
+    ports:
+      - ${PORT}:8080
+    environment:
+      TZ: Asia/Shanghai
+    logging:
+      options:
+        max-size: 10mb
