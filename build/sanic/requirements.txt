@@ -35,7 +35,7 @@ pypinyin==0.27.0
 python-dateutil==2.6.0
 python-slugify==1.2.4
 redis==2.10.6
-requests==2.14.2
+requests==2.20.0
 sanic==0.7.0
 schedule==0.4.3
 six==1.12.0
