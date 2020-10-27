@@ -5,7 +5,7 @@ bcrypt==3.1.6
 captcha==0.2.3
 cffi==1.11.5
 crcmod==1.7
-cryptography==2.5
+cryptography==3.2
 Fabric==1.14.0
 Fabric3==1.14.post1
 flake8==3.6.0
