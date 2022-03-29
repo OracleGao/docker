@@ -21,7 +21,7 @@ mccabe==0.6.1
 multidict==4.5.2
 olefile==0.46
 oss2==2.3.1
-paramiko==2.4.2
+paramiko==2.10.1
 peewee==2.10.2
 pika==0.10.0
 Pillow==5.2.0
