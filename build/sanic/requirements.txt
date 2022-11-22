@@ -24,7 +24,7 @@ oss2==2.3.1
 paramiko==2.4.2
 peewee==2.10.2
 pika==0.10.0
-Pillow==5.2.0
+Pillow==9.3.0
 pyasn1==0.4.5
 pycodestyle==2.4.0
 pycparser==2.19
